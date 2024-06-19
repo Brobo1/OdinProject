@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 980px;
+  justify-content: center;
+}
+
+.cols {
+}
+.cell {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  outline: rgba(106, 106, 106, 0.05) solid 1px;
+}
+
+#inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#colors {
+  display: flex;
+  justify-content: space-between;
+}
