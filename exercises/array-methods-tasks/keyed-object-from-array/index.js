@@ -4,9 +4,16 @@ let users = [
   { id: "pete", name: "Pete Peterson", age: 31 },
 ];
 
-function groupById(arr) {}
+function groupById(arr) {
+  return arr.reduce((acc, cur) => {
+    acc[cur.id] = { ...cur };
+    return acc;
+  }, {});
+}
 
 let usersById = groupById(users);
+
+console.log(usersById);
 
 /*
 // after the call we should have:
