@@ -1,3 +1,38 @@
 body {
-  background-color: #505050;
+  background-color: #494949;
+  display: flex;
+  justify-content: center;
+}
+
+#container {
+  width: 400px;
+  height: 600px;
+  background-color: #606060;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  gap: 20px;
+}
+
+#screen {
+  background-color: #979797;
+  height: 20%;
+  border-radius: 2px;
+}
+
+#number-pad {
+  background-color: #323232;
+}
+
+#numbers {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 2px;
+  padding: 2px 150px 2px 2px;
+}
+
+.number {
+  font-size: 30px;
+  height: 100px;
 }
