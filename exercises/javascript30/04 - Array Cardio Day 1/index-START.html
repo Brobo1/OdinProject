@@ -5,7 +5,7 @@
     <title>Array Cardio 💪</title>
     <link rel="icon" href="https://fav.farm/🔥" />
   </head>
-  <body>
+  <body style="background-color: #323232">
     <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
     <script>
       // Get your shorts on - this is an array workout!
@@ -179,16 +179,13 @@
         "car",
         "truck",
       ];
-      let counter = 0;
       let summedData = data.reduce((acc, cur) => {
-        if (acc.includes(cur)) {
-          counter++;
-          console.log({ type: cur, nr: counter });
-        } else {
-          acc = acc + cur;
+        if (!acc[cur]) {
+          acc[cur] = 0;
         }
+        acc[cur]++;
         return acc;
-      }, "");
+      }, {});
       console.log(summedData);
     </script>
   </body>
