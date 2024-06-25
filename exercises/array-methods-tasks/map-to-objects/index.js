@@ -18,4 +18,5 @@ usersMapped = [
 */
 
 console.log(usersMapped[0].id); // 1
+console.log(usersMapped); // 1
 console.log(usersMapped[0].fullName); // John Smith
