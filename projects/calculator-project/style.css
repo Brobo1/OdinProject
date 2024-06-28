@@ -27,9 +27,20 @@ button {
 }
 
 #screen {
+  display: flex;
+  flex-direction: column;
   background-color: #979797;
   height: 20%;
+  max-height: 20%;
   border-radius: 2px;
+  justify-content: end;
+  align-items: end;
+  padding: 0 20px;
+}
+
+#screenText {
+  margin: 0;
+  font-size: 50px;
 }
 
 #number-pad {
@@ -45,6 +56,9 @@ button {
   padding: 2px 2px 2px 2px;
   flex-basis: 70%;
 }
+.number {
+  height: 100px;
+}
 
 #symbols {
   display: flex;
@@ -52,10 +66,6 @@ button {
   gap: 2px;
   flex-basis: 30%;
   padding: 2px 2px 2px 0;
-}
-
-.number {
-  height: 100px;
 }
 
 .symbol {
