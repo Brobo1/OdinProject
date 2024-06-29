@@ -4,9 +4,10 @@ const buttons = document.getElementById("buttons");
 const displayScr = document.getElementById("screenText");
 const deleteBtn = document.getElementById("delete");
 const clearBtn = document.getElementById("clear");
-let num1;
-let num2;
-let operator;
+let num1 = "";
+let num2 = "";
+let operator = "";
+let text = "";
 
 const addNumbers = () => {
   let numberPad = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "="];
@@ -15,14 +16,8 @@ const addNumbers = () => {
     numBtn.type = "button";
     numBtn.name = "number";
     numBtn.innerText = number;
-    if (numBtn.innerText === "") {
-      numBtn.disabled = true;
-    }
     if (numBtn.innerText === "=") {
       numBtn.name = "equals";
-    }
-    if (numBtn.innerText === "C") {
-      numBtn.name = "clear";
     }
     numBtn.className = "number";
     numbers.appendChild(numBtn);
@@ -77,7 +72,10 @@ function populateDisplay(str) {
   displayScr.innerText = str;
 }
 
-let text = "";
+function clearDisplay() {
+  displayScr.innerText = "";
+}
+
 buttons.addEventListener("click", (e) => {
   let name = e.target.name;
   if (name === "number" || name === "symbol") {
@@ -89,7 +87,7 @@ buttons.addEventListener("click", (e) => {
     console.log(vars);
   }
   if (name === "clear") {
-    text = "";
+    text = "0";
   }
   populateDisplay(text);
 });
