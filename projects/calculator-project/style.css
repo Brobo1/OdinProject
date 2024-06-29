@@ -10,6 +10,12 @@ body {
   justify-content: center;
 }
 
+button {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
 #container {
   width: 400px;
   height: 600px;
@@ -19,11 +25,6 @@ body {
   flex-direction: column;
   border-radius: 3px;
   gap: 20px;
-}
-button {
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
 }
 
 #screen {
@@ -41,6 +42,21 @@ button {
 #screenText {
   margin: 0;
   font-size: 50px;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#control-btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#control-btn button {
+  width: 40%;
 }
 
 #number-pad {
