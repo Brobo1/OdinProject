@@ -80,7 +80,6 @@ function populateDisplay(str) {
 let text = "";
 buttons.addEventListener("click", (e) => {
   let name = e.target.name;
-  console.log(name);
   if (name === "number" || name === "symbol") {
     text += e.target.innerText;
   }
