@@ -2,10 +2,11 @@ const numbers = document.getElementById("numbers");
 const symbols = document.getElementById("symbols");
 const buttons = document.getElementById("buttons");
 const displayScr = document.getElementById("screenText");
-const displayScrFull = document.getElementById("screenText");
+const displayScrFull = document.getElementById("screenTextFull");
 let num1 = "";
 let num2 = "";
 let operator = null;
+let forceReset = false;
 
 let text = "";
 
@@ -18,6 +19,9 @@ const addNumbers = () => {
     numBtn.innerText = number;
     if (numBtn.innerText === "=") {
       numBtn.name = "equals";
+    }
+    if (numBtn.innerText === ".") {
+      numBtn.name = "dot";
     }
     numBtn.className = "number";
     numbers.appendChild(numBtn);
@@ -74,6 +78,12 @@ function populateDisplay(str) {
   displayScr.innerText = str;
 }
 
+function dot(str) {
+  if (!str.includes(".")) {
+    text = displayScr.innerText + ".";
+  }
+}
+
 function appendNum(num) {
   if (displayScr.innerText === "0") {
     text = "";
@@ -87,15 +97,32 @@ function resetDisplay() {
 
 function setOp(curOp) {
   num1 = text;
-  if (operator === null) {
+  if (num1) {
     operator = curOp;
+    displayScrFull.innerText = `${num1} ${operator}`;
+    resetDisplay();
   }
-  resetDisplay();
 }
 
 function equals() {
-  num2 = text;
-  if (operator !== null) text = operate(num1, operator, num2).toString();
+  if (!num2) {
+    num2 = text;
+  }
+
+  if (operator !== null) {
+    text = (
+      Math.round(operate(num1, operator, num2) * 10000) / 10000
+    ).toString();
+    displayScrFull.innerText = `${num1} ${operator} ${num2} =`;
+  }
+  num1 = text;
+}
+
+function clear() {
+  text = "";
+  displayScrFull.innerText = "";
+  num1 = "";
+  num2 = "";
   operator = null;
 }
 
@@ -107,8 +134,11 @@ buttons.addEventListener("click", (e) => {
   if (name === "number") {
     appendNum(e.target.innerText);
   }
+  if (name === "dot") {
+    dot(text);
+  }
   if (name === "clear") {
-    text = "0";
+    clear();
   }
   if (name === "delete") {
     del();
@@ -118,5 +148,4 @@ buttons.addEventListener("click", (e) => {
   if (name === "symbol") {
     setOp(e.target.innerText);
   }
-  console.log(num1, operator, num2);
 });
