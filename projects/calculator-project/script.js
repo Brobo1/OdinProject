@@ -60,6 +60,9 @@ function operate(num1, operator, num2) {
 }
 
 function populateDisplay(str) {
+  if (str === "") {
+    str = "0";
+  }
   displayScr.innerText = str;
 }
 
@@ -68,6 +71,10 @@ function appendNum(num) {
     text = "";
   }
   text += num;
+}
+
+function del() {
+  text = text.slice(0, text.length - 1);
 }
 
 buttons.addEventListener("click", (e) => {
@@ -82,6 +89,9 @@ buttons.addEventListener("click", (e) => {
   }
   if (name === "clear") {
     text = "0";
+  }
+  if (name === "delete") {
+    del();
   }
   populateDisplay(text);
 });
