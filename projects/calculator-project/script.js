@@ -2,11 +2,7 @@ const numbers = document.getElementById("numbers");
 const symbols = document.getElementById("symbols");
 const buttons = document.getElementById("buttons");
 const displayScr = document.getElementById("screenText");
-const deleteBtn = document.getElementById("delete");
-const clearBtn = document.getElementById("clear");
-let num1 = "";
-let num2 = "";
-let operator = "";
+
 let text = "";
 
 const addNumbers = () => {
@@ -23,7 +19,6 @@ const addNumbers = () => {
     numbers.appendChild(numBtn);
   });
 };
-
 const addSymbols = () => {
   let symbolPad = ["/", "*", "-", "+"];
   symbolPad.forEach((symbol) => {
@@ -35,7 +30,6 @@ const addSymbols = () => {
     symbols.appendChild(symBtn);
   });
 };
-
 const createPad = () => {
   addNumbers();
   addSymbols();
@@ -46,15 +40,12 @@ createPad();
 function add(a, b) {
   return a + b;
 }
-
 function subtract(a, b) {
   return a - b;
 }
-
 function multiply(a, b) {
   return a * b;
 }
-
 function divide(a, b) {
   return a / b;
 }
@@ -72,17 +63,20 @@ function populateDisplay(str) {
   displayScr.innerText = str;
 }
 
-function clearDisplay() {
-  displayScr.innerText = "";
+function appendNum(num) {
+  if (displayScr.innerText === "0") {
+    text = "";
+  }
+  text += num;
 }
 
 buttons.addEventListener("click", (e) => {
   let name = e.target.name;
   if (name === "number" || name === "symbol") {
-    text += e.target.innerText;
+    appendNum(e.target.innerText);
   }
   if (name === "equals") {
-    let vars = text.match(/\d+|\S/g);
+    let vars = text.match(/\d+(\.\d+)?|\S/g);
     text = operate(...vars);
     console.log(vars);
   }
