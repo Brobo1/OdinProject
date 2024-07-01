@@ -61,7 +61,7 @@ button {
 
 #control-btn button {
   width: 50%;
-  margin: 2px;
+  margin: 4px;
 }
 
 #number-pad {
@@ -76,8 +76,8 @@ button {
 
 .number,
 .symbol {
-  height: 100px;
-  margin: 2px;
+  height: 60px;
+  margin: 4px;
 }
 
 #numbers {

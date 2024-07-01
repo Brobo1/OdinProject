@@ -91,16 +91,12 @@ function appendNum(num) {
   text += num;
 }
 
-function resetDisplay() {
-  text = "";
-}
-
 function setOp(curOp) {
   num1 = text;
   if (num1) {
     operator = curOp;
     displayScrFull.innerText = `${num1} ${operator}`;
-    resetDisplay();
+    text = "";
   }
   forceReset = true;
 }
@@ -145,9 +141,17 @@ buttons.addEventListener("click", (e) => {
   if (name === "delete") {
     del();
   }
-  populateDisplay(text);
 
   if (name === "symbol") {
     setOp(e.target.innerText);
+  }
+  if (
+    name === "equals" ||
+    name === "number" ||
+    name === "dot" ||
+    name === "clear" ||
+    name === "delete"
+  ) {
+    populateDisplay(text);
   }
 });
