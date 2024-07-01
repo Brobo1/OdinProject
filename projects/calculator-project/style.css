@@ -36,10 +36,17 @@ button {
   align-items: end;
   padding: 0 20px;
 }
+#screenTextContainer {
+  display: flex;
+  align-items: center;
+}
 
 #screenText {
   margin: 0;
   font-size: 50px;
+}
+#screenTextSymbol {
+  margin: 0;
 }
 
 #buttons {

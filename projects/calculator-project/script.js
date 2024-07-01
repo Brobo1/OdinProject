@@ -2,6 +2,10 @@ const numbers = document.getElementById("numbers");
 const symbols = document.getElementById("symbols");
 const buttons = document.getElementById("buttons");
 const displayScr = document.getElementById("screenText");
+const displayScrFull = document.getElementById("screenText");
+let num1 = "";
+let num2 = "";
+let operator = null;
 
 let text = "";
 
@@ -50,6 +54,10 @@ function divide(a, b) {
   return a / b;
 }
 
+function del() {
+  text = text.slice(0, text.length - 1);
+}
+
 function operate(num1, operator, num2) {
   num1 = parseFloat(num1);
   num2 = parseFloat(num2);
@@ -73,19 +81,31 @@ function appendNum(num) {
   text += num;
 }
 
-function del() {
-  text = text.slice(0, text.length - 1);
+function resetDisplay() {
+  text = "";
+}
+
+function setOp(curOp) {
+  num1 = text;
+  if (operator === null) {
+    operator = curOp;
+  }
+  resetDisplay();
+}
+
+function equals() {
+  num2 = text;
+  if (operator !== null) text = operate(num1, operator, num2).toString();
+  operator = null;
 }
 
 buttons.addEventListener("click", (e) => {
   let name = e.target.name;
-  if (name === "number" || name === "symbol") {
-    appendNum(e.target.innerText);
-  }
   if (name === "equals") {
-    let vars = text.match(/\d+(\.\d+)?|\S/g);
-    text = operate(...vars);
-    console.log(vars);
+    equals();
+  }
+  if (name === "number") {
+    appendNum(e.target.innerText);
   }
   if (name === "clear") {
     text = "0";
@@ -94,4 +114,9 @@ buttons.addEventListener("click", (e) => {
     del();
   }
   populateDisplay(text);
+
+  if (name === "symbol") {
+    setOp(e.target.innerText);
+  }
+  console.log(num1, operator, num2);
 });
