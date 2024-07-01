@@ -102,10 +102,11 @@ function setOp(curOp) {
     displayScrFull.innerText = `${num1} ${operator}`;
     resetDisplay();
   }
+  forceReset = true;
 }
 
 function equals() {
-  if (!num2) {
+  if (!num2 || forceReset) {
     num2 = text;
   }
 
@@ -116,6 +117,7 @@ function equals() {
     displayScrFull.innerText = `${num1} ${operator} ${num2} =`;
   }
   num1 = text;
+  forceReset = false;
 }
 
 function clear() {
