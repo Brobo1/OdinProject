@@ -1,4 +1,9 @@
+const modalBtn = document.getElementById("show-modal");
+const modal = document.getElementById("modal");
+const form = document.getElementById("book-form");
+
 const myLibrary = [];
+let isModal = false;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -19,4 +24,13 @@ addBookToLibrary({
   author: "Armando",
   pages: 1,
   read: true,
+});
+
+form.addEventListener("click", (e) => {
+  e.preventDefault();
+});
+
+modalBtn.addEventListener("click", () => {
+  isModal = !isModal;
+  modal.style.display = isModal ? "block" : "none";
 });

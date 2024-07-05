@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <title>Library</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="container">
       <header id="header">
         <p id="title">Library</p>
-        <button id="add-btn">Add book</button>
+        <button id="show-modal">Add book</button>
       </header>
       <div id="book-container"></div>
     </div>
     <div id="modal">
-      <form>
+      <form method="post" id="book-form">
         <input
           type="text"
           placeholder="Book title"
@@ -31,12 +31,13 @@
           aria-label="Author"
         />
         <input
-          type="text"
+          type="number"
           placeholder="Number of pages"
           name="pages"
           id="pages-input"
           aria-label="Pages"
         />
+        <input type="submit" value="Add" />
       </form>
     </div>
   </body>
