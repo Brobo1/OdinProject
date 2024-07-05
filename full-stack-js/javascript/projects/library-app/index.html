@@ -6,5 +6,38 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div id="container">
+      <header id="header">
+        <p id="title">Library</p>
+        <button id="add-btn">Add book</button>
+      </header>
+      <div id="book-container"></div>
+    </div>
+    <div id="modal">
+      <form>
+        <input
+          type="text"
+          placeholder="Book title"
+          name="title"
+          id="title-input"
+          aria-label="Book Title"
+        />
+        <input
+          type="text"
+          placeholder="Author"
+          name="author"
+          id="author-input"
+          aria-label="Author"
+        />
+        <input
+          type="text"
+          placeholder="Number of pages"
+          name="pages"
+          id="pages-input"
+          aria-label="Pages"
+        />
+      </form>
+    </div>
+  </body>
 </html>

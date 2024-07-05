@@ -9,3 +9,14 @@ function Book(title, author, pages, read) {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`;
   };
 }
+
+function addBookToLibrary(book) {
+  myLibrary.push(new Book(...Object.values(book)));
+}
+
+addBookToLibrary({
+  title: "Fall of the rise",
+  author: "Armando",
+  pages: 1,
+  read: true,
+});
