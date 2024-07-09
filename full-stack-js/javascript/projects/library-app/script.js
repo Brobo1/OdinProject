@@ -52,6 +52,9 @@ function addBookCard(arr) {
     card.className = "book-card";
     card.innerHTML = `
       <p>${book.title}</p>
+      <p>${book.author}</p>
+      <p>${book.pages} Pages</p>
+      <button id="read-btn">${book.read ? "read" : "not read"}</button>
     `;
     bookContainer.appendChild(card);
   });
@@ -66,10 +69,25 @@ form.addEventListener("submit", (e) => {
   formData.read = formData.read === "on";
   addBookToLibrary(formData);
   addBookCard(myLibrary);
-  console.log(myLibrary);
+  isModal = false;
+  modal.style.display = "none";
+  form.reset();
 });
 
 modalBtn.addEventListener("click", () => {
   isModal = !isModal;
   modal.style.display = isModal ? "block" : "none";
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target.id === "modal") {
+    isModal = false;
+    modal.style.display = "none";
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.id === "read-btn") {
+    console.log(e.target.id);
+  }
 });
