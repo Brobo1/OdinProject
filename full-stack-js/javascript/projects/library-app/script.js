@@ -51,13 +51,31 @@ function addBookCard(arr) {
     let card = document.createElement("div");
     card.className = "book-card";
     card.innerHTML = `
-      <p>${book.title}</p>
-      <p>${book.author}</p>
-      <p>${book.pages} Pages</p>
-      <button id="read-btn">${book.read ? "read" : "not read"}</button>
+      <p class="card-title">${book.title}</p>
+      <p class="card-author">${book.author}</p>
+      <p class="card-pages">${book.pages} Pages</p>
+      <div class="card-btn">
+        <button class="read-btn">${book.read ? "read" : "not read"}</button>
+        <button class="remove-btn">Remove</button>
+      </div>
     `;
     bookContainer.appendChild(card);
   });
+}
+
+function removeBook(e) {
+  let title = e.target.parentElement.firstElementChild.textContent;
+  let index = myLibrary.findIndex((book) => book.title === title);
+  myLibrary.splice(index, 1);
+  addBookCard(myLibrary);
+}
+
+function changeRead(e) {
+  let title =
+    e.target.parentElement.parentElement.firstElementChild.textContent;
+  let index = myLibrary[myLibrary.findIndex((book) => book.title === title)];
+  index.read = !index.read;
+  addBookCard(myLibrary);
 }
 
 addBookCard(myLibrary);
@@ -87,7 +105,10 @@ modal.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target.id === "read-btn") {
-    console.log(e.target.id);
+  if (e.target.className === "read-btn") {
+    changeRead(e);
+  }
+  if (e.target.className === "remove-btn") {
+    removeBook(e);
   }
 });
