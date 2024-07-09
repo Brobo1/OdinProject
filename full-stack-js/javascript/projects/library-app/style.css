@@ -20,11 +20,13 @@ p {
 
 #modal {
   transform: translateX(-50%);
-  position: fixed;
+  position: absolute;
   left: 50%;
+  top: 150px;
+
   width: 300px;
   z-index: 1;
-  display: none;
+  display: block;
 }
 
 form {
@@ -37,4 +39,15 @@ form {
 
 input {
   margin: 0;
+}
+
+#book-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, 200px);
+  justify-content: center;
+}
+
+.book-card {
+  border: 1px solid black;
 }
