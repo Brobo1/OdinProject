@@ -67,6 +67,7 @@ input {
 }
 
 .book-card {
+  text-align: center;
   border-radius: 4px;
   gap: 5px;
   padding: 5px;
