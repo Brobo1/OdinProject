@@ -45,7 +45,6 @@ gridSizeBtn.addEventListener("click", () => {
   }
 });
 
-//test
 container.addEventListener("dragstart", (e) => e.preventDefault());
 
 let lastCell;
