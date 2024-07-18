@@ -5,6 +5,9 @@ body {
   align-content: center;
   align-items: center;
   gap: 20px;
+  background-color: #515151;
+  font-family: "Roboto", "sans-serif";
+  color: #f1f1f1;
 }
 
 #grid-container {
@@ -14,13 +17,37 @@ body {
   justify-content: center;
 }
 
+#grid-size {
+  display: flex;
+  gap: 5px;
+}
+
+#grid-input {
+  margin: 4px 2px;
+  padding: 5px;
+  max-width: 170px;
+  border-radius: 2px;
+  border: none;
+}
+
+#random-checkbox {
+  height: 20px;
+  width: 20px;
+}
+
+#random-inputs {
+  display: flex;
+  align-items: center;
+}
+
 .cols {
 }
+
 .cell {
   box-sizing: border-box;
   width: 20px;
   height: 20px;
-  outline: rgba(106, 106, 106, 0.05) solid 1px;
+  outline: rgba(142, 142, 142, 0.05) solid 1px;
 }
 
 #inputs {
@@ -29,7 +56,33 @@ body {
   gap: 20px;
 }
 
+input {
+  font-family: inherit;
+}
+
 #colors {
   display: flex;
   justify-content: space-between;
+}
+
+button {
+  font-family: inherit;
+  background-color: #f0f0f0;
+  border: 1px solid rgba(128, 128, 128, 0);
+  border-radius: 3px;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #777777;
+  border: 1px solid rgb(209, 209, 209);
+  color: white;
 }

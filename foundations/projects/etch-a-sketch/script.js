@@ -3,9 +3,23 @@ const gridInput = document.getElementById("grid-input");
 const gridSizeBtn = document.getElementById("grid-size-btn");
 const colorPicker = document.getElementById("color-picker");
 const randomColorCheckbox = document.getElementById("random-checkbox");
+const clearBtn = document.getElementById("clear");
+let gridSizeInit = 32;
 
-const gridSize = 32;
-const cellSize = 30;
+function grid() {
+  let gridSize = 32;
+  let cellSize = 30;
+
+  const getGridSize = () => gridSize;
+  const setGridSize = (newSize) => (gridSize = newSize);
+
+  const getCellSize = () => cellSize;
+  const setCellSize = () => (cellSize = 30 * (gridSizeInit / gridSize));
+
+  return { setGridSize, getGridSize, setCellSize, getCellSize };
+}
+
+const size = grid();
 
 const createGrid = (gridSize, cellSize) => {
   container.innerHTML = "";
@@ -31,7 +45,7 @@ const randomColor = () => {
   return `rgb(${random()},${random()},${random()})`;
 };
 
-createGrid(gridSize, cellSize);
+createGrid(size.getGridSize(), size.getCellSize());
 
 gridSizeBtn.addEventListener("click", () => {
   if (
@@ -39,17 +53,21 @@ gridSizeBtn.addEventListener("click", () => {
     gridInput.value >= 1 &&
     gridInput.value <= 100
   ) {
-    createGrid(gridInput.value, cellSize * (gridSize / gridInput.value));
+    size.setGridSize(parseInt(gridInput.value));
+    size.setCellSize();
+    createGrid(size.getGridSize(), size.getCellSize());
   } else {
     alert("Enter number between 1 and 100");
   }
 });
 
+clearBtn.addEventListener("click", () =>
+  createGrid(size.getGridSize(), size.getCellSize()),
+);
 container.addEventListener("dragstart", (e) => e.preventDefault());
 
 let lastCell;
 container.addEventListener("mousemove", (e) => {
-  console.log(e.target);
   if (
     e.target.className === "cell" &&
     e.buttons === 1 &&
