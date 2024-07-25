@@ -9,22 +9,19 @@ function GameBoard() {
     }
   }
 
-  const setGameBoard = (player) => {};
+  const setGameBoard = (player, row, col) => {
+    gameBoard[row][col].addSign(player);
+  };
 
   const getGameBoard = () => gameBoard;
   const printGameBoard = () =>
     gameBoard.map((row) => console.log(row.map((cell) => cell.getSign())));
-  return { getGameBoard, printGameBoard };
+  return { getGameBoard, printGameBoard, setGameBoard };
 }
 
 function Player(name, sign) {
   this.name = name;
   this.sign = sign;
-
-  const getPlayerName = () => name;
-  const setPlayerName = (newName) => (name = newName);
-
-  return { getPlayerName, setPlayerName };
 }
 
 function GameFlow() {
@@ -33,6 +30,7 @@ function GameFlow() {
     p2: new Player("player2", "o"),
   };
   let gameBoard = new GameBoard();
+  gameBoard.setGameBoard(players.p1, 1, 1);
   gameBoard.printGameBoard();
 }
 
