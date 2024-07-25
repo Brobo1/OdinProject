@@ -1,21 +1,37 @@
-function GameBoard() {
+function GameBoard(player) {
   const row = 3;
   const col = 3;
-  const board = [];
+  const gameBoard = [];
   for (let i = 0; i < row; i++) {
-    board[i] = [];
+    gameBoard[i] = [];
     for (let j = 0; j < col; j++) {
-      board[i].push(j);
+      gameBoard[i].push(j);
     }
   }
-  console.log(board);
+
+  const setGameBoard = () => {};
+
+  const getGameBoard = () => gameBoard;
+  return { getGameBoard };
 }
 
-GameBoard();
-
-function GameFlow() {}
-
-function Player(name, score) {
+function Player(name, sign) {
   this.name = name;
-  this.score = score;
+  this.sign = sign;
+
+  const getPlayerName = () => name;
+  const setPlayerName = (newName) => (name = newName);
+
+  return { getPlayerName, setPlayerName };
 }
+
+function GameFlow() {
+  const players = {
+    p1: new Player("player1", "x"),
+    p2: new Player("player2", "o"),
+  };
+  let gameBoard = new GameBoard();
+  console.log(gameBoard.getGameBoard());
+}
+
+GameFlow();
