@@ -9,19 +9,26 @@ function GameBoard() {
     }
   }
 
-  const setGameBoard = (player, row, col) => {
+  const setCell = (player, row, col) => {
     if (gameBoard[row][col].getSign() === " ") {
       gameBoard[row][col].addSign(player);
+      return true;
     } else {
       console.log("Already occupied");
+      return false;
     }
   };
 
   const getGameBoard = () =>
     gameBoard.map((row) => row.map((cell) => cell.getSign()));
-  const printGameBoard = () =>
-    gameBoard.map((row) => console.log(row.map((cell) => cell.getSign())));
-  return { getGameBoard, printGameBoard, setGameBoard };
+  const printGameBoard = () => {
+    gameBoard.map((row) => {
+      console.log(row.map((cell) => cell.getSign()));
+      console.log(" ");
+    });
+    console.log("-----------------");
+  };
+  return { getGameBoard, printGameBoard, setCell };
 }
 
 function Player(name, sign) {
@@ -30,16 +37,17 @@ function Player(name, sign) {
 }
 
 function GameFlow() {
-  const players = {
-    p1: new Player("player1", "x"),
-    p2: new Player("player2", "o"),
-  };
   let gameBoard = new GameBoard();
-  gameBoard.setGameBoard(players.p1, 1, 1);
-  gameBoard.setGameBoard(players.p1, 0, 1);
-  gameBoard.setGameBoard(players.p1, 2, 1);
-  gameBoard.setGameBoard(players.p2, 1, 2);
-  gameBoard.setGameBoard(players.p2, 2, 2);
+  const players = [new Player("player1", "x"), new Player("player2", "o")];
+  let playerIndex = 0;
+
+  const playTurn = (row, col) => {
+    const currPlayer = players[playerIndex];
+    gameBoard.setCell(currPlayer, row, col);
+    playerIndex = (playerIndex + 1) % 2;
+    gameBoard.printGameBoard();
+    console.log(validate(gameBoard));
+  };
 
   const validate = (board) => {
     const gameBoard = board.getGameBoard();
@@ -48,9 +56,34 @@ function GameFlow() {
       const first = cells[0];
       return first !== " " && cells.every((cell) => cell === first);
     };
+
+    for (let i = 0; i < 3; i++) {
+      if (allMatch(gameBoard[i])) {
+        return gameBoard[i][0];
+      }
+    }
+
+    for (let i = 0; i < 3; i++) {
+      const column = [gameBoard[0][i], gameBoard[1][i], gameBoard[2][i]];
+      if (allMatch(column)) {
+        console.log(column[0]);
+        return column[0];
+      }
+    }
+
+    const diag1 = [gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]];
+    const diag2 = [gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]];
+    if (allMatch(diag1)) return diag1[0];
+    if (allMatch(diag2)) return diag2[0];
+
+    if (gameBoard.every((row) => row.every((cell) => cell !== " "))) {
+      return "draw";
+    }
+
+    return null;
   };
 
-  gameBoard.printGameBoard();
+  return { playTurn };
 }
 
 function Cell() {
@@ -61,4 +94,9 @@ function Cell() {
   return { addSign, getSign };
 }
 
-GameFlow();
+const game = new GameFlow();
+game.playTurn(0, 0); //x
+game.playTurn(2, 1); //o
+game.playTurn(1, 1); //x
+game.playTurn(2, 0); //o
+game.playTurn(2, 2); //x
