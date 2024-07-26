@@ -10,10 +10,15 @@ function GameBoard() {
   }
 
   const setGameBoard = (player, row, col) => {
-    gameBoard[row][col].addSign(player);
+    if (gameBoard[row][col].getSign() === " ") {
+      gameBoard[row][col].addSign(player);
+    } else {
+      console.log("Already occupied");
+    }
   };
 
-  const getGameBoard = () => gameBoard;
+  const getGameBoard = () =>
+    gameBoard.map((row) => row.map((cell) => cell.getSign()));
   const printGameBoard = () =>
     gameBoard.map((row) => console.log(row.map((cell) => cell.getSign())));
   return { getGameBoard, printGameBoard, setGameBoard };
@@ -31,6 +36,16 @@ function GameFlow() {
   };
   let gameBoard = new GameBoard();
   gameBoard.setGameBoard(players.p1, 1, 1);
+  gameBoard.setGameBoard(players.p1, 0, 1);
+  gameBoard.setGameBoard(players.p1, 2, 1);
+  gameBoard.setGameBoard(players.p2, 2, 1);
+  gameBoard.setGameBoard(players.p2, 2, 2);
+
+  const validate = (board) => {
+    board.getGameBoard();
+  };
+
+  validate(gameBoard);
   gameBoard.printGameBoard();
 }
 
