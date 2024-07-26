@@ -46,7 +46,7 @@ function GameFlow() {
     gameBoard.setCell(currPlayer, row, col);
     playerIndex = (playerIndex + 1) % 2;
     gameBoard.printGameBoard();
-    console.log(validate(gameBoard));
+    validate(gameBoard);
   };
 
   const validate = (board) => {
@@ -66,7 +66,6 @@ function GameFlow() {
     for (let i = 0; i < 3; i++) {
       const column = [gameBoard[0][i], gameBoard[1][i], gameBoard[2][i]];
       if (allMatch(column)) {
-        console.log(column[0]);
         return column[0];
       }
     }
