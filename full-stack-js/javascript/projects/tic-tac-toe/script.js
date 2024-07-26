@@ -38,14 +38,18 @@ function GameFlow() {
   gameBoard.setGameBoard(players.p1, 1, 1);
   gameBoard.setGameBoard(players.p1, 0, 1);
   gameBoard.setGameBoard(players.p1, 2, 1);
-  gameBoard.setGameBoard(players.p2, 2, 1);
+  gameBoard.setGameBoard(players.p2, 1, 2);
   gameBoard.setGameBoard(players.p2, 2, 2);
 
   const validate = (board) => {
-    board.getGameBoard();
+    const gameBoard = board.getGameBoard();
+
+    const allMatch = (cells) => {
+      const first = cells[0];
+      return first !== " " && cells.every((cell) => cell === first);
+    };
   };
 
-  validate(gameBoard);
   gameBoard.printGameBoard();
 }
 
