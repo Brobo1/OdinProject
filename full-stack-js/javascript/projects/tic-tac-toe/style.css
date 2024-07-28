@@ -7,17 +7,17 @@ body {
 }
 
 p {
-  margin: 0;
+  margin: auto 0;
   padding: 0;
 }
 #container {
-  width: 540px;
-  height: 540px;
 }
 
 #game-board {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .row {
@@ -25,7 +25,6 @@ p {
 }
 
 .cell {
-  box-sizing: border-box;
   width: 180px;
   height: 180px;
   background-color: #8e8e8e;
@@ -43,8 +42,8 @@ p {
 }
 
 #game-board > div:not(:first-child) > div {
-  border-top: #505050 solid 1px;
+  border-top: #505050 solid 2px;
 }
 #game-board > div > div:not(:first-child) {
-  border-left: #505050 solid 1px;
+  border-left: #505050 solid 2px;
 }
