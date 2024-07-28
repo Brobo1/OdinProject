@@ -1,5 +1,5 @@
 const gameBoardDiv = document.getElementById("game-board");
-
+const textsDiv = document.getElementById("texts");
 function GameBoard() {
   const row = 3;
   const col = 3;
@@ -10,14 +10,15 @@ function GameBoard() {
     gameBoard[i] = [];
     cellElements[i] = [];
     const gameBoardRows = document.createElement("div");
+    gameBoardRows.className = "row";
     for (let j = 0; j < col; j++) {
       gameBoard[i].push(Cell());
       const gameBoardCell = document.createElement("div");
       gameBoardCell.className = "cell";
-
+      gameBoardCell.dataset.row = i.toString();
+      gameBoardCell.dataset.col = j.toString();
       gameBoardCell.textContent = gameBoard[i][j].getSign();
       cellElements[i].push(gameBoardCell);
-      console.log(gameBoard[i][j].getSign());
       gameBoardRows.appendChild(gameBoardCell);
     }
     gameBoardDiv.appendChild(gameBoardRows);
@@ -29,7 +30,6 @@ function GameBoard() {
       cellElements[row][col].textContent = player.sign;
       return true;
     } else {
-      console.log("Already occupied");
       return false;
     }
   };
@@ -39,7 +39,6 @@ function GameBoard() {
   const printGameBoard = () => {
     gameBoard.map((row) => {
       console.log(row.map((cell) => cell.getSign()));
-      console.log(" ");
       return true;
     });
     console.log("-----------------");
@@ -59,10 +58,16 @@ function GameFlow() {
 
   const playTurn = (row, col) => {
     const currPlayer = players[playerIndex];
-    gameBoard.setCell(currPlayer, row, col);
-    playerIndex = (playerIndex + 1) % 2;
-    gameBoard.printGameBoard();
-    validate(gameBoard);
+    if (gameBoard.setCell(currPlayer, row, col)) {
+      playerIndex = (playerIndex + 1) % 2;
+      gameBoard.printGameBoard();
+      const result = validate(gameBoard);
+      if (result) {
+        displayMessage(result === "draw" ? "Draw!" : `${result} Wins!`);
+      }
+    } else {
+      displayMessage("Already occupied");
+    }
   };
 
   const validate = (board) => {
@@ -101,20 +106,22 @@ function GameFlow() {
   return { playTurn };
 }
 
+function displayMessage(message) {
+  textsDiv.textContent = message;
+}
+
 function Cell() {
   let sign = " ";
 
   const addSign = (player) => (sign = player.sign);
   const getSign = () => {
-    console.log("getSign called, returning:", sign);
     return sign;
   };
   return { addSign, getSign };
 }
 
 const game = new GameFlow();
-game.playTurn(0, 0); //x
-game.playTurn(2, 1); //o
-game.playTurn(1, 1); //x
-game.playTurn(2, 0); //o
-game.playTurn(2, 2); //x
+
+gameBoardDiv.addEventListener("click", (e) => {
+  game.playTurn(parseInt(e.target.dataset.row), parseInt(e.target.dataset.col));
+});

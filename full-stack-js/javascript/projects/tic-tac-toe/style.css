@@ -6,12 +6,16 @@ body {
 }
 
 #container {
-  background-color: #595959;
   width: 540px;
   height: 540px;
 }
 
 #game-board {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
   display: flex;
 }
 
@@ -23,9 +27,9 @@ body {
   font-size: 8em;
 }
 
-#game-board > div > div:not(:first-child) {
+#game-board > div:not(:first-child) > div {
   border-top: #505050 solid 1px;
 }
-#game-board > div:not(:first-child) > div {
+#game-board > div > div:not(:first-child) {
   border-left: #505050 solid 1px;
 }
