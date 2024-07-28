@@ -38,10 +38,11 @@ function GameBoard() {
     gameBoard.map((row) => row.map((cell) => cell.getSign()));
   const printGameBoard = () => {
     gameBoard.map((row) => {
-      // console.log(row.map((cell) => cell.getSign()));
-      // console.log(" ");
+      console.log(row.map((cell) => cell.getSign()));
+      console.log(" ");
+      return true;
     });
-    // console.log("-----------------");
+    console.log("-----------------");
   };
   return { getGameBoard, printGameBoard, setCell };
 }
