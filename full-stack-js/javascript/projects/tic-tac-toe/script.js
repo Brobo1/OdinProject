@@ -107,7 +107,7 @@ function GameFlow() {
 }
 
 function displayMessage(message) {
-  textsDiv.textContent = message;
+  textsDiv.children[1].textContent = message;
 }
 
 function Cell() {
