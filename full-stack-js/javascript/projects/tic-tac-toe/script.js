@@ -71,12 +71,15 @@ function GameFlow() {
       displayMessage("");
       playerIndex = (playerIndex + 1) % 2;
       gameBoard.printGameBoard();
+      highlightPlayerTurn(playerIndex);
       const result = validate(gameBoard);
       if (result) {
         displayMessage(
           result === "draw" ? "Draw!" : `${result.toUpperCase()} Wins!`,
         );
+        highlightPlayerTurn().clearHighlight();
         isGameOver = true;
+        playerIndex = 0;
         rematchBtn.style.display = "block";
       }
     } else {
@@ -123,6 +126,7 @@ function GameFlow() {
     gameBoard.initialize();
     isGameOver = false;
     displayMessage("");
+    highlightPlayerTurn();
     rematchBtn.style.display = "none";
   };
 
@@ -131,6 +135,17 @@ function GameFlow() {
 
 function displayMessage(message) {
   textsDiv.children[1].textContent = message;
+}
+
+function highlightPlayerTurn(player = 0) {
+  const playerElement = [textsDiv.children[0], textsDiv.children[2]];
+
+  const clearHighlight = () =>
+    playerElement.forEach((player) => (player.style.backgroundColor = ""));
+  clearHighlight();
+  playerElement[player].style.backgroundColor = "#4a4a4a";
+
+  return { clearHighlight };
 }
 
 function Cell() {

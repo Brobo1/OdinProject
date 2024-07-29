@@ -25,6 +25,13 @@ p {
   color: #c8c8c8;
 }
 
+#player-x,
+#player-o {
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.5s ease;
+}
+
 #game-board {
   display: flex;
   flex-direction: column;
@@ -58,6 +65,7 @@ p {
   opacity: 1;
   animation-name: text-fade-in;
   animation-duration: 0.3s;
+  pointer-events: none;
 }
 
 @keyframes text-fade-in {
