@@ -83,7 +83,7 @@ function GameFlow() {
         rematchBtn.style.display = "block";
       }
     } else {
-      displayMessage("Already occupied");
+      displayMessage("Occupied", "#da3030");
     }
   };
 
@@ -133,8 +133,9 @@ function GameFlow() {
   return { playTurn, isFinished, rematch };
 }
 
-function displayMessage(message) {
+function displayMessage(message, color = "#c8c8c8") {
   textsDiv.children[1].textContent = message;
+  textsDiv.children[1].style.color = color;
 }
 
 function highlightPlayerTurn(player = 0) {
