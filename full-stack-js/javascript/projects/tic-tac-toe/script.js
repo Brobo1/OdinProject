@@ -1,33 +1,39 @@
 const gameBoardDiv = document.getElementById("game-board");
 const textsDiv = document.getElementById("texts");
+const rematchBtn = document.getElementById("rematch");
+
 function GameBoard() {
   const row = 3;
   const col = 3;
   const gameBoard = [];
   const cellElements = [];
 
-  for (let i = 0; i < row; i++) {
-    gameBoard[i] = [];
-    cellElements[i] = [];
-    const gameBoardRows = document.createElement("div");
-    gameBoardRows.className = "row";
-    for (let j = 0; j < col; j++) {
-      gameBoard[i].push(Cell());
-      const gameBoardCell = document.createElement("div");
-      gameBoardCell.className = "cell";
-      gameBoardCell.dataset.row = i.toString();
-      gameBoardCell.dataset.col = j.toString();
-      gameBoardCell.textContent = gameBoard[i][j].getSign();
-      cellElements[i].push(gameBoardCell);
-      gameBoardRows.appendChild(gameBoardCell);
+  const initialize = () => {
+    gameBoardDiv.innerHTML = ``;
+    for (let i = 0; i < row; i++) {
+      gameBoard[i] = [];
+      cellElements[i] = [];
+      const gameBoardRows = document.createElement("div");
+      gameBoardRows.className = "row";
+      for (let j = 0; j < col; j++) {
+        gameBoard[i].push(Cell());
+        const gameBoardCell = document.createElement("div");
+        gameBoardCell.className = "cell";
+        gameBoardCell.dataset.row = i.toString();
+        gameBoardCell.dataset.col = j.toString();
+
+        cellElements[i].push(gameBoardCell);
+        gameBoardRows.appendChild(gameBoardCell);
+      }
+      gameBoardDiv.appendChild(gameBoardRows);
     }
-    gameBoardDiv.appendChild(gameBoardRows);
-  }
+  };
 
   const setCell = (player, row, col) => {
     if (gameBoard[row][col].getSign() === " ") {
       gameBoard[row][col].addSign(player);
-      cellElements[row][col].textContent = player.sign;
+      cellElements[row][col].innerHTML =
+        `<p class="sign-text">${player.sign}</p>`;
       return true;
     } else {
       return false;
@@ -43,7 +49,9 @@ function GameBoard() {
     });
     console.log("-----------------");
   };
-  return { getGameBoard, printGameBoard, setCell };
+
+  initialize();
+  return { getGameBoard, printGameBoard, setCell, initialize };
 }
 
 function Player(name, sign) {
@@ -55,15 +63,21 @@ function GameFlow() {
   let gameBoard = new GameBoard();
   const players = [new Player("player1", "x"), new Player("player2", "o")];
   let playerIndex = 0;
+  let isGameOver = false;
 
   const playTurn = (row, col) => {
     const currPlayer = players[playerIndex];
     if (gameBoard.setCell(currPlayer, row, col)) {
+      displayMessage("");
       playerIndex = (playerIndex + 1) % 2;
       gameBoard.printGameBoard();
       const result = validate(gameBoard);
       if (result) {
-        displayMessage(result === "draw" ? "Draw!" : `${result} Wins!`);
+        displayMessage(
+          result === "draw" ? "Draw!" : `${result.toUpperCase()} Wins!`,
+        );
+        isGameOver = true;
+        rematchBtn.style.display = "block";
       }
     } else {
       displayMessage("Already occupied");
@@ -103,7 +117,16 @@ function GameFlow() {
     return null;
   };
 
-  return { playTurn };
+  const isFinished = () => isGameOver;
+
+  const rematch = () => {
+    gameBoard.initialize();
+    isGameOver = false;
+    displayMessage("");
+    rematchBtn.style.display = "none";
+  };
+
+  return { playTurn, isFinished, rematch };
 }
 
 function displayMessage(message) {
@@ -123,5 +146,9 @@ function Cell() {
 const game = new GameFlow();
 
 gameBoardDiv.addEventListener("click", (e) => {
-  game.playTurn(parseInt(e.target.dataset.row), parseInt(e.target.dataset.col));
+  if (!game.isFinished() && e.target.className === "cell") {
+    game.playTurn(e.target.dataset.row, e.target.dataset.col);
+  }
 });
+
+rematchBtn.addEventListener("click", game.rematch);

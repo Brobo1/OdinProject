@@ -10,7 +10,19 @@ p {
   margin: auto 0;
   padding: 0;
 }
+
 #container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#texts {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 28px;
+  color: #c8c8c8;
 }
 
 #game-board {
@@ -18,6 +30,15 @@ p {
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
+  user-select: none;
+}
+
+#game-board > div:not(:first-child) > div {
+  border-top: #505050 solid 2px;
+}
+
+#game-board > div > div:not(:first-child) {
+  border-left: #505050 solid 2px;
 }
 
 .row {
@@ -33,17 +54,25 @@ p {
   text-align: center;
 }
 
-#texts {
-  display: flex;
-  justify-content: space-between;
-  height: 50px;
-  padding: 0 20px;
-  font-size: 20px;
+.sign-text {
+  opacity: 1;
+  animation-name: text-fade-in;
+  animation-duration: 0.3s;
 }
 
-#game-board > div:not(:first-child) > div {
-  border-top: #505050 solid 2px;
+@keyframes text-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-#game-board > div > div:not(:first-child) {
-  border-left: #505050 solid 2px;
+
+#rematch {
+  display: none;
+  font-size: 30px;
+  font-family: inherit;
+  width: 200px;
+  align-self: center;
 }
