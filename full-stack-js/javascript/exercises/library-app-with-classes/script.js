@@ -6,6 +6,7 @@ const bookContainer = document.getElementById("book-container");
 const myLibrary = [];
 let isModal = false;
 let formData;
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
