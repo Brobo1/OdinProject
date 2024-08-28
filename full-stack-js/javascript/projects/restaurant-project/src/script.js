@@ -1,4 +1,4 @@
-// const para = document.createElement("p");
-// para.innerText = "Restauranto";
-//
-// document.body.appendChild(para);
+const para = document.createElement("p");
+para.innerText = "Restaurant";
+
+document.body.appendChild(para);
