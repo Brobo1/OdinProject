@@ -7,6 +7,7 @@ const doc = document.getElementById("content");
 const btns = Array.from(document.getElementsByTagName("button"));
 
 homeContent(doc);
+navStyle("Home");
 
 function navStyle(tab) {
   btns.forEach((btn) => {
