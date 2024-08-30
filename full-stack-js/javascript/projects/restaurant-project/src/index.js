@@ -9,7 +9,13 @@ const btns = Array.from(document.getElementsByTagName("button"));
 homeContent(doc);
 
 function navStyle(tab) {
-  const index = btns.findIndex((btn) => btn.textContent === tab);
+  btns.forEach((btn) => {
+    if (btn.textContent === tab) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
 }
 
 btns.forEach((btn) => {
