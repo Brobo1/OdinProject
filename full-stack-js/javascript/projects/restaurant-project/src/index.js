@@ -8,19 +8,23 @@ const btns = Array.from(document.getElementsByTagName("button"));
 
 homeContent(doc);
 
+function navStyle(tab) {
+  const index = btns.findIndex((btn) => btn.textContent === tab);
+}
+
 btns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    const target = e.target.textContent.toLowerCase();
-
+    const target = e.target.textContent;
+    navStyle(target);
     doc.innerHTML = "";
 
-    if (target === "home") {
+    if (target === "Home") {
       homeContent(doc);
     }
-    if (target === "menu") {
+    if (target === "Menu") {
       menuContent(doc);
     }
-    if (target === "about") {
+    if (target === "About") {
       aboutContent(doc);
     }
   });
