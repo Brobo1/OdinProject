@@ -66,3 +66,9 @@ p {
   max-width: 400px;
   margin: 0 auto 20px;
 }
+
+.rest-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
