@@ -18,15 +18,14 @@ const testTodo = createTodo(
   "this is ayo...",
   "tomorrow",
   9,
-  ["One", "Two", "Three", "Four", "Five", "six."],
+  ["One", "Two", "Three", "Four", "Five", "six.", "----"],
   ["One", "Two", "Three", "Four", "Five", "six?"],
 );
 
 function todoCard(todo) {
   const notes = todo.notes.map((note) => `<p>${note}</p>`).join(" ");
   const checklist = todo.checklist.map((item) => `<p>${item}</p>`).join(" ");
-
-  const card = `
+  return `
   <div class="card-container">
     <p class="card-title">${todo.title}</p>
     <p class="card-description">${todo.description}</p>
@@ -36,7 +35,6 @@ function todoCard(todo) {
     <div class="card-checklist">${checklist}</div>
   </div>
   `;
-  return card;
 }
 
 container.innerHTML = todoCard(testTodo);
