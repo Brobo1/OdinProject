@@ -21,6 +21,14 @@ const testTodo = createTodo(
   ["One", "Two", "Three", "Four", "Five", "six.", "----"],
   ["One", "Two", "Three", "Four", "Five", "six?"],
 );
+const testTodo2 = createTodo(
+  "teste2",
+  "this is ayo2...",
+  "todaye",
+  9,
+  ["One", "Two", "Three", "Four", "Five", "six.", "----"],
+  ["One", "Two", "Three", "Four", "Five", "six?"],
+);
 
 function todoCard(todo) {
   const notes = todo.notes.map((note) => `<p>${note}</p>`).join(" ");
