@@ -13,10 +13,32 @@ p {
 }
 
 .card-container {
-  color: #b5b5b5;
+  background-color: #4c577c;
+  border-radius: 3px;
+  color: #dadada;
   border: #5c5c5c 1px solid;
+  width: 200px;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card-component:not(:first-child) {
+  border-bottom: #222222 solid 1px;
+}
+.card-title-container {
+  border-bottom: #222222 solid 1px;
+  display: flex;
 }
 
 .card-title {
   font-size: 2em;
+}
+.arrow-icon {
+  height: 50px;
+  color: red;
+  fill: red;
+  stroke: red;
 }

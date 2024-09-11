@@ -1,6 +1,9 @@
 import "./styles.css";
+import arrowDown from "./assets/arrowDown.svg";
 
 const container = document.getElementById("container");
+
+const date = new Date();
 
 function createTodo(
   title,
@@ -10,23 +13,16 @@ function createTodo(
   notes = [],
   checklist = [],
 ) {
-  return { title, description, dueDate, priority, notes, checklist };
+  const id = 0;
+  return { id, title, description, dueDate, priority, notes, checklist };
 }
 
 const testTodo = createTodo(
   "ayoo",
   "this is ayo...",
   "tomorrow",
-  9,
-  ["One", "Two", "Three", "Four", "Five", "six.", "----"],
-  ["One", "Two", "Three", "Four", "Five", "six?"],
-);
-const testTodo2 = createTodo(
-  "teste2",
-  "this is ayo2...",
-  "todaye",
-  9,
-  ["One", "Two", "Three", "Four", "Five", "six.", "----"],
+  `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+  ["One", "Two", "Three", "Four", "Five", "six."],
   ["One", "Two", "Three", "Four", "Five", "six?"],
 );
 
@@ -35,12 +31,15 @@ function todoCard(todo) {
   const checklist = todo.checklist.map((item) => `<p>${item}</p>`).join(" ");
   return `
   <div class="card-container">
-    <p class="card-title">${todo.title}</p>
-    <p class="card-description">${todo.description}</p>
-    <p class="card-duedate">${todo.dueDate}</p>
-    <p class="card-priority">${todo.priority}</p>
-    <div class="card-notes">${notes}</div>
-    <div class="card-checklist">${checklist}</div>
+    <div class="card-title-container">
+      <p class="card-component card-title">${todo.title}</p>
+      <img class="arrow-icon" src="${arrowDown}" alt="arrow icon">
+    </div>
+    <p class="card-component card-description">${todo.description}</p>
+    <p class="card-component card-duedate">${todo.dueDate}</p>
+    <p class="card-component card-priority">${todo.priority}</p>
+    <div class="card-component card-notes">${notes}</div>
+    <div class="card-component card-checklist">${checklist}</div>
   </div>
   `;
 }
