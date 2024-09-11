@@ -1,30 +1,8 @@
 import "./styles.css";
 import arrowDown from "./assets/arrowDown.svg";
+import * as test from "./components/test-data.js";
 
 const container = document.getElementById("container");
-
-const date = new Date();
-
-function createTodo(
-  title,
-  description,
-  dueDate,
-  priority,
-  notes = [],
-  checklist = [],
-) {
-  const id = 0;
-  return { id, title, description, dueDate, priority, notes, checklist };
-}
-
-const testTodo = createTodo(
-  "ayoo",
-  "this is ayo...",
-  "tomorrow",
-  `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
-  ["One", "Two", "Three", "Four", "Five", "six."],
-  ["One", "Two", "Three", "Four", "Five", "six?"],
-);
 
 function todoCard(todo) {
   const notes = todo.notes.map((note) => `<p>${note}</p>`).join(" ");
@@ -44,4 +22,4 @@ function todoCard(todo) {
   `;
 }
 
-container.innerHTML = todoCard(testTodo);
+container.innerHTML = todoCard(test.testTodo);
