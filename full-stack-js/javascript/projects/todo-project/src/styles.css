@@ -37,6 +37,12 @@ p {
 .card-title {
   font-size: 2em;
 }
+
+.checkpoint-container {
+  display: flex;
+  gap: 10px;
+}
+
 .arrow-icon {
   height: 50px;
 }

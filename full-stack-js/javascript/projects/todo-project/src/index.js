@@ -6,7 +6,15 @@ const container = document.getElementById("container");
 
 function todoCard(todo) {
   const notes = todo.notes.map((note) => `<p>${note}</p>`).join(" ");
-  const checklist = todo.checklist.map((item) => `<p>${item}</p>`).join(" ");
+  const checklist = todo.checklist
+    .map(
+      (item) => `
+  <div class="checkpoint-container">
+      <input type="checkbox">
+      <p>${item.str}</p>
+  </div>`,
+    )
+    .join(" ");
   return `
   <div class="card-container">
     <div class="card-title-container">

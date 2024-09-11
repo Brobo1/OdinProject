@@ -8,5 +8,5 @@ export const testTodo = objs.createTodo(
   "tomorrow",
   `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
   [objs.note("note1").str, objs.note("note2").str, objs.note("note3").str],
-  [objs.checkItem("check1", false).str, objs.checkItem("check2", true).str],
+  [objs.checkItem("check1", false), objs.checkItem("check2", true)],
 );
