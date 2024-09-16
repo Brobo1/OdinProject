@@ -2,6 +2,7 @@ import "./styles.css";
 import arrowDown from "./assets/arrowDown.svg";
 import editPen from "./assets/pencil-svgrepo-com.svg";
 import * as test from "./components/test-data.js";
+import { newCard } from "./components/new-card";
 
 const container = document.getElementById("container");
 
@@ -88,3 +89,5 @@ showEdit("title");
 showEdit("description");
 showEdit("duedate");
 showEdit("priority");
+
+newCard();

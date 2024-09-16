@@ -12,6 +12,11 @@ p {
   margin: 0;
 }
 
+#container {
+  display: flex;
+  flex-direction: row;
+}
+
 .card-container {
   background-color: #4c577c;
   border-radius: 3px;
@@ -45,6 +50,10 @@ p {
 
 .card-edit-icon {
   height: 30px;
+}
+
+#add-card-icon {
+  height: 200px;
 }
 
 .checkpoint-container {
