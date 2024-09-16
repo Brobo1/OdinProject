@@ -3,6 +3,7 @@ import arrowDown from "./assets/arrowDown.svg";
 import editPen from "./assets/pencil-svgrepo-com.svg";
 import * as test from "./components/test-data.js";
 import { newCard } from "./components/new-card";
+import { createCard } from "./components/create-card";
 
 const container = document.getElementById("container");
 
@@ -90,4 +91,6 @@ showEdit("description");
 showEdit("duedate");
 showEdit("priority");
 
-newCard();
+newCard(() => {
+  createCard();
+});
