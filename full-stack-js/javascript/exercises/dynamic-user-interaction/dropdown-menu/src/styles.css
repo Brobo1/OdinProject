@@ -1,0 +1,27 @@
+body {
+  font-size: 28px;
+}
+
+p {
+  margin: 0;
+}
+
+.item {
+  margin-left: 10px;
+}
+
+#dropdown {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 200px;
+}
+
+.dropdown-title {
+  margin-bottom: 10px;
+}
+
+.dropdown-items {
+  flex-direction: column;
+  gap: 10px;
+}
