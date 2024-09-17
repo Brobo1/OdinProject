@@ -10,6 +10,8 @@ function imageCarousel() {
   const arrows = document.getElementById("arrows");
   let counter = 0;
   imageContainer.innerHTML = `<img src="${images[counter]}" alt="${images[counter]}"/>`;
+  highlightDots(counter);
+
   arrows.addEventListener("click", (e) => {
     const target = e.target.className;
     if (target === "forward") {
@@ -19,7 +21,14 @@ function imageCarousel() {
       counter = counter === 0 ? 3 : (counter - 1) % 4;
     }
     imageContainer.innerHTML = `<img src="${images[counter]}" alt="${images[counter]}"/>`;
+    highlightDots(counter);
   });
+}
+
+function highlightDots(dot) {
+  const dots = document.getElementById("dots");
+  Array.from(dots.children).forEach((dot) => (dot.style.color = "#202020"));
+  dots.children[dot].style.color = "#7e7e7e";
 }
 
 imageCarousel();

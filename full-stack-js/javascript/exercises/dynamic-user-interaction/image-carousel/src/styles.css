@@ -1,5 +1,5 @@
 html {
-  background-color: #222222;
+  background-color: #3a3a3a;
 }
 
 body {
@@ -33,6 +33,10 @@ body {
   background-color: rgba(34, 34, 34, 0.53);
 }
 
+img {
+  border-radius: 6px;
+}
+
 #arrows {
   display: flex;
   width: 100%;
@@ -49,7 +53,13 @@ body {
 }
 
 .dot {
+  color: #222222;
   margin: 0;
   font-weight: bolder;
   font-size: 3em;
+}
+#dots {
+  padding: 0 20px;
+  border-radius: 5px;
+  background-color: rgba(48, 48, 48, 0.62);
 }
