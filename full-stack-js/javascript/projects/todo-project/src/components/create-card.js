@@ -1,19 +1,28 @@
+import { createTodo } from "./objects";
+let cards = JSON.parse(localStorage.getItem("cards"));
+
 export function createCard() {
+  if (!localStorage.getItem("cards")) {
+    cards = [];
+  }
+  cards.push(createTodo("Title", "Description", "Date", "Priority"));
+  localStorage.setItem("cards", JSON.stringify(cards));
+
   return `
     <div class="card-container">
-    <div class="card-item-container card-title-container">
-      <p class="card-component card-title">title</p>
+      <div class="card-item-container card-title-container">
+        <p class="card-component card-title">Title</p>
+      </div>
+      <div class="card-item-container card-description-container">
+        <p class="card-component card-description">Description</p>
+      </div>
+      <div class="card-item-container card-duedate-container">
+        <p class="card-component card-duedate">Date</p>
+      </div>
+      <div class="card-item-container card-priority-container">
+        <p class="card-component card-priority">Priority</p>
+      </div>
     </div>
-    <div class="card-item-container card-description-container">
-      <p class="card-component card-description">Description</p>
-    </div>
-    <div class="card-item-container card-duedate-container">
-      <p class="card-component card-duedate">dueDate</p>
-    </div>
-    <div class="card-item-container card-priority-container">
-      <p class="card-component card-priority">priority</p>
-    </div>
-  </div>
   `;
 }
 

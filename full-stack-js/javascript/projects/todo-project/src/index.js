@@ -6,6 +6,31 @@ import { createCard } from "./components/create-card";
 
 const container = document.getElementById("container");
 
+function getStorage() {
+  const cards = JSON.parse(localStorage.getItem("cards"));
+  if (cards)
+    cards.map((card) => {
+      container.innerHTML += `
+    <div class="card-container">
+      <div class="card-item-container card-title-container">
+        <p class="card-component card-title">${card.title}</p>
+      </div>
+      <div class="card-item-container card-description-container">
+        <p class="card-component card-description">${card.description}</p>
+      </div>
+      <div class="card-item-container card-duedate-container">
+        <p class="card-component card-duedate">${card.dueDate}</p>
+      </div>
+      <div class="card-item-container card-priority-container">
+        <p class="card-component card-priority">${card.priority}</p>
+      </div>
+    </div>
+    `;
+    });
+}
+
+getStorage();
+
 function showEdit(cardContainer) {
   let isHover = false;
   let isEdit;
@@ -25,11 +50,19 @@ function showEdit(cardContainer) {
           .querySelector(".card-edit-icon")
           .addEventListener("click", () => {
             isEdit = !isEdit;
-            target.children[0].contentEditable = isEdit;
+            const editableElement = target.children[0];
+            editableElement.contentEditable = isEdit;
             if (isEdit) {
-              target.children[0].style.outline = "white 1px solid";
+              editableElement.style.outline = "white 1px solid";
+              editableElement.addEventListener("blur", () => {
+                updateLocalStorage(
+                  target,
+                  cardContainer,
+                  editableElement.textContent,
+                );
+              });
             } else {
-              target.children[0].style.outline = "none";
+              editableElement.style.outline = "none";
             }
           });
       }
@@ -59,9 +92,20 @@ function showEdit(cardContainer) {
   );
 }
 
+function updateLocalStorage(target, cardContainer, newValue) {
+  const cards = JSON.parse(localStorage.getItem("cards"));
+  const cardIndex = Array.from(container.children).indexOf(
+    target.parentElement,
+  );
+  if (cards && cardIndex >= 0) {
+    cards[cardIndex][cardContainer] = newValue;
+    localStorage.setItem("cards", JSON.stringify(cards));
+  }
+}
+
 showEdit("title");
 showEdit("description");
-showEdit("duedate");
+showEdit("dueDate");
 showEdit("priority");
 
 newCard(() => {
