@@ -92,5 +92,5 @@ showEdit("duedate");
 showEdit("priority");
 
 newCard(() => {
-  createCard();
+  container.innerHTML = createCard() + container.innerHTML;
 });

@@ -1,6 +1,5 @@
 export function createCard() {
-  const container = document.getElementById("container");
-  container.innerHTML += `
+  return `
     <div class="card-container">
     <div class="card-item-container card-title-container">
       <p class="card-component card-title">title</p>
