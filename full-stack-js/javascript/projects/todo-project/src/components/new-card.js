@@ -2,10 +2,11 @@ import plusIcon from "./../assets/add-svgrepo-com (1).svg";
 
 export function newCard(cardEvent) {
   const cardContainer = document.getElementById("container");
-  cardContainer.innerHTML += `
-	<div class="card-container">
+  const cardAdder = document.createElement("div");
+  cardAdder.className = "card-container card-add-container";
+  cardAdder.innerHTML = `
 		<img id="add-card-icon" src="${plusIcon}" alt="Plus Icon" draggable="false">
-	</div>
 	`;
-  document.getElementById("add-card-icon").addEventListener("click", cardEvent);
+  cardContainer.appendChild(cardAdder);
+  cardAdder.addEventListener("click", cardEvent);
 }
