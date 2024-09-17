@@ -1,47 +1,14 @@
 import "./styles.css";
 import arrowDown from "./assets/arrowDown.svg";
 import editPen from "./assets/pencil-svgrepo-com.svg";
-import * as test from "./components/test-data.js";
 import { newCard } from "./components/new-card";
 import { createCard } from "./components/create-card";
 
 const container = document.getElementById("container");
 
-function todoCard(todo) {
-  const notes = todo.notes.map((note) => `<p>${note}</p>`).join(" ");
-  const checklist = todo.checklist
-    .map(
-      (item) => `
-  <div class="checkpoint-container">
-      <input type="checkbox">
-      <p>${item.str}</p>
-  </div>`,
-    )
-    .join(" ");
-  return `
-  <div class="card-container">
-    <div class="card-item-container card-title-container">
-      <p class="card-component card-title">${todo.title}</p>
-    </div>
-    <div class="card-item-container card-description-container">
-      <p class="card-component card-description">${todo.description}</p>
-    </div>
-    <div class="card-item-container card-duedate-container">
-      <p class="card-component card-duedate">${todo.dueDate}</p>
-    </div>
-    <div class="card-item-container card-priority-container">
-      <p class="card-component card-priority">${todo.priority}</p>
-    </div>
-    <div class="card-component card-notes">${notes}</div>
-    <div class="card-component card-checklist">${checklist}</div>
-  </div>
-  `;
-}
-
-container.innerHTML = todoCard(test.testTodo);
-
 function showEdit(cardContainer) {
   let isHover = false;
+  let isEdit;
 
   container.addEventListener(
     "mouseenter",
@@ -56,8 +23,14 @@ function showEdit(cardContainer) {
 
         target
           .querySelector(".card-edit-icon")
-          .addEventListener("click", (clickEvent) => {
-            target.children[0].contentEditable = true;
+          .addEventListener("click", () => {
+            isEdit = !isEdit;
+            target.children[0].contentEditable = isEdit;
+            if (isEdit) {
+              target.children[0].style.outline = "white 1px solid";
+            } else {
+              target.children[0].style.outline = "none";
+            }
           });
       }
     },
@@ -92,5 +65,7 @@ showEdit("duedate");
 showEdit("priority");
 
 newCard(() => {
-  container.innerHTML = createCard() + container.innerHTML;
+  const appendCard = document.createElement("div");
+  appendCard.innerHTML = createCard();
+  container.prepend(appendCard);
 });
