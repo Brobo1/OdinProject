@@ -1,0 +1,55 @@
+html {
+  background-color: #222222;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#carousel {
+  width: fit-content;
+  position: relative;
+}
+
+.forward,
+.back {
+  font-size: 5em;
+  padding: 0 20px;
+  margin: 0 20px;
+  border-radius: 12px;
+  background-color: rgba(34, 34, 34, 0.24);
+  transition: 0.2s;
+  user-select: none;
+}
+
+.forward:hover,
+.back:hover {
+  background-color: rgba(34, 34, 34, 0.53);
+}
+
+#arrows {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#dots {
+  display: flex;
+  gap: 10px;
+  user-select: none;
+}
+
+.dot {
+  margin: 0;
+  font-weight: bolder;
+  font-size: 3em;
+}
