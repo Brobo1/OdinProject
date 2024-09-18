@@ -23,14 +23,16 @@ body {
   padding: 0 20px;
   margin: 0 20px;
   border-radius: 12px;
-  background-color: rgba(34, 34, 34, 0.24);
+  background-color: rgba(34, 34, 34, 0.41);
+  color: black;
   transition: 0.2s;
   user-select: none;
 }
 
 .forward:hover,
 .back:hover {
-  background-color: rgba(34, 34, 34, 0.53);
+  background-color: rgba(34, 34, 34, 0.84);
+  color: #cccccc;
 }
 
 img {
@@ -38,6 +40,7 @@ img {
 }
 
 #arrows {
+  font-weight: bold;
   display: flex;
   width: 100%;
   justify-content: space-between;
