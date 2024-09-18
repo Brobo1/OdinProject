@@ -1,15 +1,53 @@
 import "./styles.css";
 
-const image = document.createElement("img");
-document.getElementById("container").append(image);
+const server = {
+  people: [
+    {
+      name: "Odin",
+      age: 20,
+    },
+    {
+      name: "Thor",
+      age: 35,
+    },
+    {
+      name: "Freyja",
+      age: 29,
+    },
+  ],
 
-fetch(
-  "https://api.giphy.com/v1/gifs/translate?api_key=XqjjoeJDPn8sZzHu9SLMBe2zkQEkDUlQ&s=cats",
-  { mode: "cors" },
-)
-  .then(function (res) {
-    return res.json();
-  })
-  .then(function (res) {
-    image.src = res.data.images.original.url;
+  getPeople() {
+    return new Promise((resolve, reject) => {
+      // Simulating a delayed network call to the server
+      setTimeout(() => {
+        resolve(this.people);
+      }, 2000);
+    });
+  },
+};
+
+// Both getPersonsInfo() do the same but the second one uses async and is
+// more familiar.
+
+// function getPersonsInfo(name) {
+//   return server.getPeople().then((people) => {
+//     return people.find((person) => {
+//       return person.name === name;
+//     });
+//   });
+// }
+
+async function getPersonsInfo(name) {
+  const people = await server.getPeople();
+  const person = people.find((person) => {
+    return person.name === name;
   });
+  return person;
+}
+
+const ptag = document.createElement("p");
+document.getElementById("container").append(ptag);
+
+getPersonsInfo("Odin").then((r) => {
+  ptag.textContent = `${r.name} ${r.age}`;
+});
