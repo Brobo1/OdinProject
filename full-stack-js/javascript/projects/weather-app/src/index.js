@@ -18,6 +18,8 @@ async function getWeather(location = "Oslo") {
   }
 }
 
+weatherToday(await getWeather());
+
 searchBtn.addEventListener("click", async () => {
   let weatherData;
   weatherData = await getWeather();
