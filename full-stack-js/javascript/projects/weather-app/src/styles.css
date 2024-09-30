@@ -33,3 +33,7 @@ table {
   font-size: 2em;
   font-weight: 300;
 }
+
+.row {
+  background-color: #353535;
+}
