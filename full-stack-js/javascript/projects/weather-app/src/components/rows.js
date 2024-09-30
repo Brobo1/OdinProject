@@ -11,13 +11,22 @@ export function addRow(data) {
     } else if (index === 1) {
       today = "Tomorrow";
     } else {
-      today = day.datetime;
+      today = splitDate(day.datetime);
     }
 
     row.innerHTML = `
 			<p>${today}</p>
+			<div>
+				<p>Max: ${day.tempmax}</p>
+				<p>Min: ${day.tempmin}</p>
+			</div>
 		`;
 
     wRow.append(row);
   });
+}
+
+function splitDate(date) {
+  const dateSplit = date.split("-");
+  return `${dateSplit[2]}.${dateSplit[1]}`;
 }

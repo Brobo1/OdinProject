@@ -35,5 +35,10 @@ table {
 }
 
 .row {
+  margin: 20px 0;
   background-color: #353535;
+  font-size: 1.4em;
+  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
 }
