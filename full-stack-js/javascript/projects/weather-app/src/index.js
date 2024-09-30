@@ -1,8 +1,9 @@
 import "./styles.css";
+import { addRow } from "./components/rows";
 
 const searchBtn = document.getElementById("search-button");
 const searchBar = document.getElementById("search-input");
-const wTable = document.getElementById("weather-table");
+const wRow = document.getElementById("weather-row");
 const dataContainer = document.getElementById("weather-data");
 const search = document.getElementById("search-container");
 
@@ -31,21 +32,13 @@ searchBtn.addEventListener("click", async () => {
 
 function weatherToday(data) {
   const location = document.createElement("div");
+  const days = data.days;
+  console.log(days);
   location.innerHTML = `
     <p id="location-name">
     ${data.resolvedAddress}
     </p>
   `;
   dataContainer.prepend(location);
-
-  wTable.innerHTML = `
-    <tr>
-      <th>${data.days[0].datetime}</th>
-    </tr>
-    <tr>
-    
-    </tr>
-  `;
+  addRow(days);
 }
-
-function addRow() {}
