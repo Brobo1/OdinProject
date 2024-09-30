@@ -136,5 +136,7 @@ function SumSquares(arr) {
 //endregion
 
 //region q9
+function replicate(x, y) {}
 
+console.log(replicate(3, 5)); // [5, 5, 5]
 //endregion
