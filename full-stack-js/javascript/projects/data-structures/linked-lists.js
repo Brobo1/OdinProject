@@ -120,7 +120,19 @@ function LinkedList() {
     return str + "null";
   };
 
-  this.insertAt = (value, index) => {};
+  this.insertAt = (value, index) => {
+    const node = new Node(value);
+    let temp = this.head;
+    let temp2 = this.head;
+    let count = 0;
+    while (count < index) {
+      temp = temp.next;
+      count++;
+    }
+    node.next = temp;
+    this.head = temp2;
+    this.head.next = temp;
+  };
 }
 
 function Node(value = null, next = null) {
@@ -132,11 +144,10 @@ const list = new LinkedList();
 
 list.append("dog");
 list.append("cat");
-// list.append("parrot");
-// list.append("hamster");
+list.append("parrot");
+list.append("hamster");
+console.log(list.toString());
+list.insertAt("donke", 2);
+console.log(list.toString());
 // list.append("snake");
 // list.append("turtle");
-list.prepend("anemal");
-console.log(list.toString());
-// console.log(list.last());
-// console.log(list.find("cat"));
