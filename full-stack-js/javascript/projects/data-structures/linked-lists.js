@@ -124,14 +124,34 @@ function LinkedList() {
     const node = new Node(value);
     let temp = this.head;
     let temp2 = this.head;
-    let count = 0;
-    while (count < index) {
-      temp = temp.next;
-      count++;
+
+    if (index === 0) {
+      node.next = this.head;
+      this.head = node;
+      return;
     }
+
+    for (let i = 0; i < index; i++) {
+      temp2 = temp;
+      temp = temp.next;
+    }
+
+    temp2.next = node;
     node.next = temp;
-    this.head = temp2;
-    this.head.next = temp;
+  };
+
+  this.removeAt = (index) => {
+    let temp = this.head;
+    let temp2 = null;
+    if (index === 0) {
+      this.head = this.head.next;
+      return;
+    }
+    for (let i = 0; i < index; i++) {
+      temp2 = temp;
+      temp = temp.next;
+    }
+    temp2.next = temp.next;
   };
 }
 
@@ -146,8 +166,9 @@ list.append("dog");
 list.append("cat");
 list.append("parrot");
 list.append("hamster");
-console.log(list.toString());
-list.insertAt("donke", 2);
+// console.log(list.toString());
+list.insertAt("donke", 4);
+list.removeAt(0);
 console.log(list.toString());
 // list.append("snake");
 // list.append("turtle");
