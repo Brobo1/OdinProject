@@ -29,7 +29,11 @@ function HashMap() {
     return counter;
   };
 
-  this.clear = () => {};
+  this.clear = () => {
+    this.buckets.fill(null);
+  };
+
+  this.keys = () => {};
 
   this.toString = () => {
     return this.buckets;
@@ -62,6 +66,6 @@ list.set("elephant", "gray");
 // list.set("kite", "pink");
 // list.set("lion", "golden");
 console.log(list.length());
-list.remove("apple");
+// list.remove("apple");
 // console.log(hash("orange"));
 console.log(list.toString());
