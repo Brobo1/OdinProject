@@ -33,7 +33,15 @@ function HashMap() {
     this.buckets.fill(null);
   };
 
-  this.keys = () => {};
+  this.keys = () => {
+    let arr = [];
+    for (let i = 0; i < this.size; i++) {
+      if (this.buckets[i]) {
+        arr.push(i);
+      }
+    }
+    return arr;
+  };
 
   this.toString = () => {
     return this.buckets;
@@ -69,3 +77,4 @@ console.log(list.length());
 // list.remove("apple");
 // console.log(hash("orange"));
 console.log(list.toString());
+console.log(list.keys());
