@@ -19,6 +19,18 @@ function HashMap() {
     this.buckets[hash(key)] = null;
   };
 
+  this.length = () => {
+    let counter = 1;
+    for (const bucketsKey of this.buckets) {
+      if (bucketsKey) {
+        counter++;
+      }
+    }
+    return counter;
+  };
+
+  this.clear = () => {};
+
   this.toString = () => {
     return this.buckets;
   };
@@ -49,6 +61,7 @@ list.set("elephant", "gray");
 // list.set("jacket", "blue");
 // list.set("kite", "pink");
 // list.set("lion", "golden");
+console.log(list.length());
 list.remove("apple");
 // console.log(hash("orange"));
 console.log(list.toString());
