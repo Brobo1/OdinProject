@@ -9,12 +9,21 @@ function Node(data) {
 }
 
 function Tree(arr) {
-  return { root: buildTree(arr) };
+  return buildTree(arr);
 }
 
-function buildTree(arr) {}
+function buildTree(arr) {
+  if (arr.length === 0) return null;
 
-buildTree();
+  let arrSorted = [...new Set(arr)].sort((a, b) => a - b); // Remove duplicates and sort
+  let mid = Math.floor(arrSorted.length / 2);
+  let node = new Node(arrSorted[mid]);
+
+  node.left = buildTree(arrSorted.slice(0, mid));
+  node.right = buildTree(arrSorted.slice(mid + 1));
+
+  return node;
+}
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
