@@ -13,4 +13,6 @@ list.set("ice cream", "white");
 list.set("jacket", "blue");
 list.set("kite", "pink");
 list.set("lion", "golden");
-console.log(list.entries());
+console.log(list.toString());
+list.set("moon", "silver");
+console.log(list.toString());

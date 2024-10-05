@@ -1,9 +1,16 @@
 export function HashMap() {
   this.size = 16;
   this.buckets = new Array(this.size).fill(null);
-  this.load = 0.75
-  
-  
+  this.load = 0.65;
+
+  this.resize = () => {
+    if (this.length() > this.size * this.load) {
+      let temp = [...this.buckets];
+      this.size *= 2;
+      this.buckets = temp.concat(new Array(this.size).fill(null));
+    }
+  };
+
   this.hash = (key) => {
     let hashCode = 0;
     const primeNumber = 31;
@@ -11,9 +18,10 @@ export function HashMap() {
       hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.size;
     }
     return hashCode;
-  }
-  
+  };
+
   this.set = (key, value) => {
+    this.resize();
     let index = this.hash(key);
     this.buckets[index] = value;
   };
@@ -57,7 +65,9 @@ export function HashMap() {
   this.values = () => {
     let arr = [];
     for (const item of this.buckets) {
-      if (item) arr.push(item);
+      if (item) {
+        arr.push(item);
+      }
     }
     return arr;
   };
@@ -75,6 +85,4 @@ export function HashMap() {
   this.toString = () => {
     return this.buckets;
   };
-
 }
-
