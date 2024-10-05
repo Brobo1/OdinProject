@@ -11,7 +11,13 @@ function HashMap() {
     return this.buckets[hash(key)];
   };
 
-  this.has = () => {};
+  this.has = (key) => {
+    return !!this.buckets[hash(key)];
+  };
+
+  this.remove = (key) => {
+    this.buckets[hash(key)] = null;
+  };
 
   this.toString = () => {
     return this.buckets;
@@ -23,10 +29,10 @@ function hash(key) {
 
   const primeNumber = 31;
   for (let i = 0; i < key.length; i++) {
-    hashCode = primeNumber * hashCode + key.charCodeAt(i);
+    hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % list.size;
   }
 
-  return hashCode % list.size;
+  return hashCode;
 }
 
 const list = new HashMap();
@@ -43,5 +49,6 @@ list.set("elephant", "gray");
 // list.set("jacket", "blue");
 // list.set("kite", "pink");
 // list.set("lion", "golden");
-console.log(list.get("applwde"));
+list.remove("apple");
+// console.log(hash("orange"));
 console.log(list.toString());
