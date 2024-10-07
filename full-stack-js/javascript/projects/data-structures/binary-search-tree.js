@@ -9,17 +9,32 @@ function Node(data) {
 }
 
 function Tree(arr) {
-  let root = buildTree(arr);
+  this.root = buildTree(arr);
 
-  this.insertInto = (num) => {
-    arr.push(num);
-    root = buildTree(arr);
+  this.insertInto = (num, currNode = this.root) => {
+    if (currNode === null) return Node(num);
+    if (currNode.data === num) return;
+    if (currNode.data < num) {
+      currNode.right = this.insertInto(num, currNode.right);
+    } else {
+      currNode.left = this.insertInto(num, currNode.left);
+    }
+    return currNode;
   };
 
-  this.getRoot = () => root;
+  this.delete = (nodes = this.root) => {
+    console.log(nodes);
+    if (nodes.right === null) {
+      return null;
+    }
+    nodes = this.delete(nodes.right);
+    return nodes;
+  };
+
+  this.getRoot = () => this.root;
 
   this.print = () => {
-    return prettyPrint(root);
+    return prettyPrint(this.root);
   };
 }
 
@@ -50,6 +65,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 const testTree = new Tree(testArr);
-testTree.insertInto(123);
-testTree.insertInto(1223);
+testTree.insertInto(56);
+testTree.insertInto(35);
+testTree.insertInto(13);
 testTree.print();
