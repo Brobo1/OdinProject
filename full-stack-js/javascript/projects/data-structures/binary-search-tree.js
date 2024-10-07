@@ -38,4 +38,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-prettyPrint(Tree(testArr));
+const tree = new Tree(testArr);
+
+prettyPrint(tree);
