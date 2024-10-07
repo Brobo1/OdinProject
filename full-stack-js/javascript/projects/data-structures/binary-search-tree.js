@@ -9,7 +9,18 @@ function Node(data) {
 }
 
 function Tree(arr) {
-  return buildTree(arr);
+  let root = buildTree(arr);
+
+  this.insertInto = (num) => {
+    arr.push(num);
+    root = buildTree(arr);
+  };
+
+  this.getRoot = () => root;
+
+  this.print = () => {
+    return prettyPrint(root);
+  };
 }
 
 function buildTree(arr) {
@@ -38,6 +49,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const tree = new Tree(testArr);
-
-prettyPrint(tree);
+const testTree = new Tree(testArr);
+testTree.insertInto(123);
+testTree.insertInto(1223);
+testTree.print();
