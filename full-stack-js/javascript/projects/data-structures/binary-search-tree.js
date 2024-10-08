@@ -211,11 +211,42 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 function treeDriver() {
   let testArr = Array.from({ length: 20 }, () =>
-    Math.floor(Math.random() * 300),
+    Math.floor(Math.random() * 300 + 100),
   );
+
+  const printEles = () => {
+    let levelArr = [];
+    tree.levelOrder((node) => levelArr.push(node.data));
+    console.log(`Level-order: ${levelArr}`);
+
+    let preArr = [];
+    tree.preOrder((node) => preArr.push(node.data));
+    console.log(`Pre-order: ${preArr}`);
+
+    let postArr = [];
+    tree.postOrder((node) => postArr.push(node.data));
+    console.log(`Pre-order: ${postArr}`);
+
+    let inArr = [];
+    tree.inOrder((node) => inArr.push(node.data));
+    console.log(`Pre-order: ${inArr}`);
+  };
+
   const tree = new Tree(testArr);
+
   tree.print();
+  console.log(tree.isBalanced());
+  printEles();
+  tree.insertInto(54);
+  tree.insertInto(13);
+  tree.insertInto(16);
+  tree.insertInto(23);
+  tree.insertInto(65);
+  tree.print();
+  console.log(tree.isBalanced());
   if (!tree.isBalanced()) tree.rebalance();
+  tree.print();
+  printEles();
 }
 
 treeDriver();
