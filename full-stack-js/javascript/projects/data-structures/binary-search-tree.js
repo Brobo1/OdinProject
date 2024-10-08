@@ -1,5 +1,3 @@
-let testArr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-
 function Node(data) {
   return {
     data: data,
@@ -211,10 +209,13 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const testTree = new Tree(testArr);
+function treeDriver() {
+  let testArr = Array.from({ length: 20 }, () =>
+    Math.floor(Math.random() * 300),
+  );
+  const tree = new Tree(testArr);
+  tree.print();
+  if (!tree.isBalanced()) tree.rebalance();
+}
 
-testTree.insertInto(6);
-testTree.print();
-
-testTree.rebalance();
-testTree.print();
+treeDriver();
