@@ -22,12 +22,16 @@ function Tree(arr) {
     return currNode;
   };
 
-  this.delete = (nodes = this.root) => {
-    console.log(nodes);
-    if (nodes.right === null) {
+  this.delete = (num, nodes = this.root) => {
+    if (nodes.data === num) {
+      nodes.data = null;
+    }
+    if (nodes.data === null) {
       return null;
     }
-    nodes = this.delete(nodes.right);
+    if (nodes.data < num) {
+      nodes.right = this.delete(num, nodes.right);
+    } else nodes.left = this.delete(num, nodes.left);
     return nodes;
   };
 
@@ -68,4 +72,5 @@ const testTree = new Tree(testArr);
 testTree.insertInto(56);
 testTree.insertInto(35);
 testTree.insertInto(13);
+testTree.delete(3);
 testTree.print();
