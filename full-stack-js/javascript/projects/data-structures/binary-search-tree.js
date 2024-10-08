@@ -172,6 +172,8 @@ function Tree(arr) {
     return height(node) !== -1;
   };
 
+  this.rebalance = () => {};
+
   this.print = () => {
     console.log("--------------");
     return prettyPrint(this.root);
