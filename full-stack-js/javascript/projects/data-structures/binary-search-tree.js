@@ -172,7 +172,12 @@ function Tree(arr) {
     return height(node) !== -1;
   };
 
-  this.rebalance = () => {};
+  this.rebalance = () => {
+    let arr = [];
+    this.levelOrder((node) => arr.push(node.data));
+    arr.sort();
+    this.root = buildTree(arr);
+  };
 
   this.print = () => {
     console.log("--------------");
@@ -210,10 +215,6 @@ const testTree = new Tree(testArr);
 
 testTree.insertInto(6);
 testTree.print();
-// testTree.find(4);
-// testTree.delete(3);
-// testTree.postOrder((node) => {
-//   console.log(node.data);
-// });
-// console.log(testTree.height(4));
-console.log(testTree.isBalanced());
+
+testTree.rebalance();
+testTree.print();
