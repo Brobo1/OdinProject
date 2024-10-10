@@ -3,13 +3,15 @@ function KnightMoves(start, end) {
   this.end = end;
   this.path = [];
 
-  this.solve = () => {
-    if (this.path.length > 64) {
+  this.solve = (path = [[this.start]]) => {
+    path.push(this.moves(path[0][0]));
+    for (const pathElement of path[1]) {
+      path.push(this.moves(pathElement));
     }
+    console.log(path);
   };
 
   this.allowed = (path) => {
-    console.log(`Allowed path ${path.x}, ${path.y}`);
     return path.x >= 0 && path.x < 8 && path.y >= 0 && path.y < 8;
   };
 
@@ -43,6 +45,5 @@ function buildBoard() {
   return board;
 }
 
-const knight = new KnightMoves({ x: 4, y: 0 }, { x: 2, y: 1 });
+const knight = new KnightMoves({ x: 3, y: 3 }, { x: 2, y: 1 });
 knight.solve();
-console.log(knight.moves());
