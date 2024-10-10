@@ -1,4 +1,6 @@
-function KnightMoves(x, y) {}
+function KnightMoves(start, end) {
+  this.solve = () => {};
+}
 
 function buildBoard() {
   let board = [];
@@ -14,3 +16,6 @@ function buildBoard() {
   }
   return board;
 }
+
+const knight = new KnightMoves([4, 0], [3, 7]);
+knight.solve();
