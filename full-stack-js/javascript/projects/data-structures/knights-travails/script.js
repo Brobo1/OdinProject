@@ -8,7 +8,6 @@ function KnightMoves(start, end) {
     for (const pathElement of path[1]) {
       path.push(this.moves(pathElement));
     }
-    console.log(path);
   };
 
   this.allowed = (path) => {
