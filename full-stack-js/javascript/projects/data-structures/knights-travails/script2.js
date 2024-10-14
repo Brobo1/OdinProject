@@ -20,6 +20,7 @@ function KnightMoves(start, end) {
         if (!visited.has(moveKey)) {
           visited.add(moveKey);
           queue.push([...path, move]);
+          console.log(moveKey);
         }
       }
     }

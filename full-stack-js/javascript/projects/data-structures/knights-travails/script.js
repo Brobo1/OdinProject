@@ -4,22 +4,25 @@ function KnightMoves(start, end) {
   this.path = [];
 
   this.solve = () => {
+    let counter = 0;
     let queue = [[this.start]];
 
-    let visited = new Set([`${this.start.x},${this.start.y}`]);
+    let visited = [this.start];
     while (queue.length > 0) {
       let path = queue.shift();
       let currentPos = path[path.length - 1];
       if (currentPos.x === this.end.x && currentPos.y === this.end.y) {
         this.path = path;
+        console.log(counter);
         return path;
       }
 
       for (let move of this.moves(currentPos)) {
         let moveKey = `${move.x},${move.y}`;
-        if (!visited.has(moveKey)) {
-          visited.add(moveKey);
+        if (!visited.includes(moveKey)) {
+          visited.push(moveKey);
           queue.push([...path, move]);
+          counter++;
         }
       }
     }
