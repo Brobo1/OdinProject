@@ -48,5 +48,5 @@ function KnightMoves(start, end) {
   };
 }
 
-const knight = new KnightMoves({ x: 3, y: 3 }, { x: 7, y: 7 });
+const knight = new KnightMoves({ x: 0, y: 0 }, { x: 7, y: 7 });
 console.log(knight.solve());
