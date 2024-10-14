@@ -5,12 +5,11 @@ function KnightMoves(start, end) {
 
   this.solve = () => {
     let queue = [[this.start]];
-    let visited = new Set([`${this.start.x},${this.start.y}`]);
 
+    let visited = new Set([`${this.start.x},${this.start.y}`]);
     while (queue.length > 0) {
       let path = queue.shift();
       let currentPos = path[path.length - 1];
-
       if (currentPos.x === this.end.x && currentPos.y === this.end.y) {
         this.path = path;
         return path;
@@ -48,5 +47,5 @@ function KnightMoves(start, end) {
 }
 
 // Example usage:
-const knight = new KnightMoves({ x: 3, y: 3 }, { x: 2, y: 1 });
+const knight = new KnightMoves({ x: 3, y: 3 }, { x: 7, y: 7 });
 console.log(knight.solve());

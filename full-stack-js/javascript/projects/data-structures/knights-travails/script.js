@@ -8,10 +8,11 @@ function KnightMoves(start, end) {
     for (const pathElement of path[1]) {
       path.push(this.moves(pathElement));
     }
+    console.log(path);
   };
 
-  this.allowed = (path) => {
-    return path.x >= 0 && path.x < 8 && path.y >= 0 && path.y < 8;
+  this.allowed = (coord) => {
+    return coord.x >= 0 && coord.x < 8 && coord.y >= 0 && coord.y < 8;
   };
 
   this.moves = (path) => {
@@ -25,7 +26,7 @@ function KnightMoves(start, end) {
       { x: x + 2, y: y - 1 },
       { x: x - 2, y: y + 1 },
       { x: x - 2, y: y - 1 },
-    ].filter((coord) => this.allowed({ x: coord.x, y: coord.y }));
+    ].filter(this.allowed);
   };
 }
 
