@@ -6,8 +6,8 @@ function KnightMoves(start, end) {
   this.solve = () => {
     let counter = 0;
     let queue = [[this.start]];
+    let visited = [];
 
-    let visited = [this.start];
     while (queue.length > 0) {
       let path = queue.shift();
       let currentPos = path[path.length - 1];
@@ -18,9 +18,8 @@ function KnightMoves(start, end) {
       }
 
       for (let move of this.moves(currentPos)) {
-        let moveKey = `${move.x},${move.y}`;
-        if (!visited.includes(moveKey)) {
-          visited.push(moveKey);
+        if (!visited.some((v) => v.x === move.x && v.y === move.y)) {
+          visited.push(move);
           queue.push([...path, move]);
           counter++;
         }
@@ -49,6 +48,5 @@ function KnightMoves(start, end) {
   };
 }
 
-// Example usage:
 const knight = new KnightMoves({ x: 3, y: 3 }, { x: 7, y: 7 });
 console.log(knight.solve());
