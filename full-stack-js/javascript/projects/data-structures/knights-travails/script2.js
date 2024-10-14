@@ -47,22 +47,6 @@ function KnightMoves(start, end) {
   };
 }
 
-// Function to visualize the board
-function buildBoard() {
-  let board = [];
-  let str = "";
-  for (let x = 0; x <= 7; x++) {
-    let row = [];
-    for (let y = 0; y <= 7; y++) {
-      row.push([x, y]);
-      str += `(${x},${y}) `;
-    }
-    board.push(row);
-    str += "\n";
-  }
-  return board;
-}
-
 // Example usage:
 const knight = new KnightMoves({ x: 3, y: 3 }, { x: 2, y: 1 });
 console.log(knight.solve());
