@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './vite.svg'
-import './App.css'
+import "./App.css";
+import { TodoList } from "./TodoList.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+function List(props) {
+  if (props.condStyle === "ifs") {
+    if (!props.things) {
+      return <div>No List</div>;
+    }
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    if (!props.things.length) {
+      return <div>No data in list</div>;
+    }
+
+    return (
+      <ul>
+        {props.things.map((thing) => {
+          return thing.startsWith("t") && <li key={thing}>{thing}</li>;
+        })}
+      </ul>
+    );
+  } else if (props.condStyle === "terenary") {
+    return (
+      <>
+        {!props.things ? (
+          <div>No List</div>
+        ) : !props.things.length ? (
+          <div>No data in list</div>
+        ) : (
+          <ul>
+            {props.things.map((thing) => {
+              return thing.startsWith("s") ? <li>{thing}</li> : null;
+            })}
+          </ul>
+        )}
+      </>
+    );
+  } else if (props.condStyle === "&&") {
+    return (
+      <>
+        {!props.things && <div>No List</div>}
+        {!props.things.length && <div>No data in list</div>}
+        <ul>
+          {props.things.map((thing) => {
+            return thing.startsWith("o") && <li>{thing}</li>;
+          })}
+        </ul>
+      </>
+    );
+  }
 }
 
-export default App
+export default function App() {
+  const arr = ["something", "other thing", "that thing", "this thing"];
+  const arrMt = [];
+  const alternate = arr.map((thing) => <li key={thing}>{thing}</li>);
+
+  return (
+    <div>
+      <h1>Things</h1>
+      <List things={arr} condStyle="&&" />
+      <TodoList />
+    </div>
+  );
+}
