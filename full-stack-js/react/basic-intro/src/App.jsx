@@ -42,7 +42,7 @@ function List(props) {
         {!props.things.length && <div>No data in list</div>}
         <ul>
           {props.things.map((thing) => {
-            return thing.startsWith("o") && <li>{thing}</li>;
+            return thing.startsWith("o") && <li key={thing}>{thing}</li>;
           })}
         </ul>
       </>
