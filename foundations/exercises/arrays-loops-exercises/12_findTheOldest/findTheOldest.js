@@ -6,7 +6,6 @@ const findTheOldest = function (arr) {
       );
     }),
   ];
-  console.log(age);
   let maxAge = Math.max(...age);
   return arr[age.indexOf(maxAge)];
 };
