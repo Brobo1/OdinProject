@@ -1,4 +1,4 @@
-function Profile() {
+export function Profile() {
   return (
     <>
       <div>
