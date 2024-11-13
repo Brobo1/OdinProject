@@ -1,22 +1,18 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { ShopContext } from "../ctx.jsx";
 
-export function ProductDetail({ products, addToCart }) {
-  const product = products.find(/* Logic to find the specific product */);
+export function ProductDetail() {
+  const { products, addToCart } = useContext(ShopContext);
 
   return (
     <div>
       {/* Image of the product */}
       <div>
         {/* elements that align with the design */}
-        <button type="button" onClick={() => addToCart(product)}>
+        <button type="button" onClick={() => addToCart(products)}>
           Add to Cart
         </button>
       </div>
     </div>
   );
 }
-
-ProductDetail.propTypes = {
-  products: PropTypes.array.isRequired,
-  addToCart: PropTypes.func.isRequired,
-};
