@@ -1,0 +1,7 @@
+### GET request to example server
+GET localhost:3000/books
+Accept: application/json
+
+### GET request to example server
+GET localhost:3000/authors
+Accept: application/json
