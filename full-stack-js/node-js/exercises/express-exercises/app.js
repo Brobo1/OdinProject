@@ -3,7 +3,7 @@ const path = require("node:path");
 const url = require("node:url");
 const app = express();
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   const filePath = path.join(
     __dirname,
     req.path === "/" ? "/index.html" : req.path + ".html",
