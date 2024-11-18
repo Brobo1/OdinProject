@@ -14,4 +14,15 @@ const getAuthorById = asyncHandler(async (req, res) => {
   res.send(`Author Name: ${author.name}`);
 });
 
-module.exports = { getAuthorById };
+const getAuthors = asyncHandler(async (req, res) => {
+  const authors = await db.getAuthors();
+  let authorStr = "";
+  authors.map((author) => (authorStr += ` ${author.name},`));
+  if (!authors) {
+    throw new CustomNotFoundError("Authors not found");
+  }
+
+  res.send(`Authors: ${authorStr}`);
+});
+
+module.exports = { getAuthorById, getAuthors };
