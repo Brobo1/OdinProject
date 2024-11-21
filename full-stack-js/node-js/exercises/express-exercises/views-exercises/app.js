@@ -9,6 +9,7 @@ const links = [
   { href: "/", text: "Home" },
   { href: "about", text: "About" },
 ];
+
 const users = ["Rose", "Cake", "Beef"];
 
 app.get("/", (req, res) => {
