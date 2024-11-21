@@ -15,6 +15,10 @@ const messages = [
 
 const indexRouter = router();
 
+indexRouter.post("/new", (req, res) => {
+  console.log(req.body);
+});
+
 indexRouter.get("/", (req, res) => {
   res.render("index", { title: "Mini Messageboard", messages: messages });
 });
