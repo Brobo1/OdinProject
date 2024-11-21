@@ -16,7 +16,13 @@ const messages = [
 const indexRouter = router();
 
 indexRouter.post("/new", (req, res) => {
-  console.log(req.body);
+  const bodyObj = req.body;
+  messages.push({
+    text: bodyObj.messageText,
+    user: bodyObj.authorText,
+    added: new Date(),
+  });
+  res.redirect("/");
 });
 
 indexRouter.get("/", (req, res) => {
