@@ -19,7 +19,7 @@ indexRouter.post("/new", (req, res) => {
   const bodyObj = req.body;
   messages.push({
     text: bodyObj.messageText,
-    user: bodyObj.authorText,
+    user: bodyObj.authorName,
     added: new Date(),
   });
   res.redirect("/");
@@ -32,7 +32,7 @@ indexRouter.get("/", (req, res) => {
   });
 });
 
-indexRouter.get("/:messageId", (req, res) => {
+indexRouter.get("/message/:messageId", (req, res) => {
   const messageId = messages[parseInt(req.params.messageId)];
   res.send(`${messageId.text} <br> ${messageId.user} <br> ${messageId.added}`);
 });
