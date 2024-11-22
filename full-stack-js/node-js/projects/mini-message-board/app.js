@@ -18,6 +18,7 @@ app.use((req, res, next) => {
   res.locals.links = links;
   next();
 });
+
 app.use("/", indexRouter);
 app.use("/new", newRouter);
 
