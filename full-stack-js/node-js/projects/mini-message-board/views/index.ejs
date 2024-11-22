@@ -5,11 +5,11 @@
 <body>
 <%- include('navbar', {links: links}) %>
 <ul>
-    <% messages.forEach((message) => { %>
+    <% messages.forEach((message, index) => { %>
         <h1><%= message.text %></h1>
         <p>Author: <%= message.user %></p>
         <p><%= message.added %></p>
-        <button onclick="location.href='/message';">Open</button>
+        <button onclick="location.href='/<%=index%>';">Open</button>
     <% }) %>
 </ul>
 </body>

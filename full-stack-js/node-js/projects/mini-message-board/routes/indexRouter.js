@@ -15,10 +15,6 @@ const messages = [
 
 const indexRouter = router();
 
-function handleClick() {
-  console.log("123123");
-}
-
 indexRouter.post("/new", (req, res) => {
   const bodyObj = req.body;
   messages.push({
@@ -33,8 +29,12 @@ indexRouter.get("/", (req, res) => {
   res.render("index", {
     title: "Mini Messageboard",
     messages: messages,
-    handleClick: handleClick,
   });
+});
+
+indexRouter.get("/:messageId", (req, res) => {
+  const messageId = messages[parseInt(req.params.messageId)];
+  res.send(`${messageId.text} <br> ${messageId.user} <br> ${messageId.added}`);
 });
 
 module.exports = indexRouter;
