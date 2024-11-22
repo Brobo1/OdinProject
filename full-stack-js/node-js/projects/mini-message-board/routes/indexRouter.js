@@ -25,6 +25,8 @@ indexRouter.post("/new", (req, res) => {
   res.redirect("/");
 });
 
+indexRouter.get("/:");
+
 indexRouter.get("/", (req, res) => {
   res.render("index", { title: "Mini Messageboard", messages: messages });
 });

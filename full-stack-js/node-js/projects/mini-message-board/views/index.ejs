@@ -6,7 +6,10 @@
 <%- include('navbar', {links: links}) %>
 <ul>
     <% messages.forEach((message) => { %>
-        <p><%= message.text %></p>
+        <h1><%= message.text %></h1>
+        <p>Author: <%= message.user %></p>
+        <p><%= message.added %></p>
+        <button>Show message</button>
     <% }) %>
 </ul>
 </body>
