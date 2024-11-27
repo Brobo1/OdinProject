@@ -36,6 +36,7 @@ app.post("/sign-up", async (req, res, next) => {
       req.body.username,
       req.body.password,
     ]);
+    res.redirect("/");
   } catch (err) {
     return next(err);
   }
