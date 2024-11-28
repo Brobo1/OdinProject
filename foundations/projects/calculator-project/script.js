@@ -3,6 +3,7 @@ const symbols = document.getElementById("symbols");
 const buttons = document.getElementById("buttons");
 const displayScr = document.getElementById("screenText");
 const displayScrFull = document.getElementById("screenTextFull");
+const screenDiv = document.getElementById("screen");
 let num1 = "";
 let num2 = "";
 let operator = null;
@@ -115,6 +116,7 @@ function equals() {
   num1 = text;
   forceReset = false;
 }
+let fontSize = 40;
 
 function clear() {
   text = "";
@@ -122,9 +124,16 @@ function clear() {
   num1 = "";
   num2 = "";
   operator = null;
+  fontSize = 40;
+  displayScr.style.fontSize = "40px";
 }
 
 buttons.addEventListener("click", (e) => {
+  if (displayScr.offsetWidth >= screenDiv.offsetWidth - 30) {
+    displayScr.style.fontSize = `${(fontSize -= 2)}px`;
+    displayScrFull.style.fontSize = `${(fontSize -= 2)}px`;
+  }
+
   let name = e.target.name;
   if (name === "equals") {
     equals();
